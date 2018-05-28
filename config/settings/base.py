@@ -44,7 +44,8 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
      'pipeline',
      'djangobower',
-     'crispy_forms',  # Form layouts
+     'crispy_forms',
+     'rest_framework',
 ]
 
 # Apps specific for this project go here.
@@ -65,7 +66,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
+    # removido no Django 2: 'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
 ]
 
 # DEBUG
