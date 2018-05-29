@@ -265,7 +265,7 @@ LOGGING = {
 # ------------------------------------------------------------------------------
 
 PIPELINE = {
-    'PIPELINE_ENABLED': False,
+    'PIPELINE_ENABLED': True,
     'JS_COMPRESSOR': False,
     'CSS_COMPRESSOR': False,
     'STYLESHEETS': {
@@ -285,17 +285,11 @@ PIPELINE = {
     'JAVASCRIPT': {
         'master': {
             'source_filenames': (
-              #'jquery/dist/jquery.js',
-              #'bootstrap/dist/js/bootstrap.js',
-              #'jasny-bootstrap/dist/js/jasny-bootstrap.js',
-              #'underscore/underscore.js',
-              #'datatables/media/js/jquery.dataTables.js',
-              #'datatables/media/js/dataTables.bootstrap.js',
-              #'bootstrap-select/dist/js/bootstrap-select.js',
-              #'vue/dist/vue.common.js',
-              #'vue/dist/vue.js',
-              #'vue-strap/dist/vue-strap.js',
-              #'vue-strap/dist/vue-strap-lang.js',
+              'jquery/dist/jquery.min.js',
+              'bootstrap/dist/js/bootstrap.min.js',
+              'underscore/underscore-min.js',
+              'bootstrap-calendar/js/calendar.min.js',
+              'bootstrap-calendar/js/language/pt-BR.js',
             ),
             'output_filename': 'js/master.js',
         }
@@ -312,6 +306,7 @@ BOWER_INSTALLED_APPS = (
     'jquery',
     'underscore',
     'bootstrap',
+    'bootstrap-calendar',
     #'jasny-bootstrap',
     #'datatables',
     #'datatables-bootstrap3',
