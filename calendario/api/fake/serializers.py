@@ -5,6 +5,8 @@ class CalendarioSerializer(serializers.Serializer):
 	id = serializers.IntegerField(read_only=True)
 	data = serializers.DateTimeField()
 	descricao = serializers.CharField(max_length=500)
+	setor = serializers.IntegerField(read_only=True)
+	pessoa = serializers.IntegerField(read_only=True)
 
 	def create(self, validated_data):
 		return Calendario(id=None, **validated_data)
