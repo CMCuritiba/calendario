@@ -12,9 +12,9 @@ class FakeCalendarioViewSet(viewsets.ViewSet):
 	serializer_class = CalendarioSerializer
 
 	entradas = {
-		1: Calendario(id=1, data=datetime(2018, 5,28, 9,0), descricao='Reunião sobre Zacarianismo'),
-		2: Calendario(id=2, data=datetime(2018, 5,29, 9,0), descricao='Reunião sobre Maiquelismo'),
-		3: Calendario(id=3, data=datetime(2018, 5,30, 9,0), descricao='Reunião sobre Avezismo'),
+		1: Calendario(id=1, data=datetime(2018, 5,28, 9,0), descricao='Reunião sobre Zacarianismo', setor=4, pessoa=3),
+		2: Calendario(id=2, data=datetime(2018, 5,29, 9,0), descricao='Reunião sobre Maiquelismo', setor=4, pessoa=3),
+		3: Calendario(id=3, data=datetime(2018, 5,30, 9,0), descricao='Reunião sobre Avezismo', setor=4, pessoa=3),
 	}			
 
 	def list(self, request):
