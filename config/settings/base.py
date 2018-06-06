@@ -51,6 +51,7 @@ THIRD_PARTY_APPS = [
 # Apps specific for this project go here.
 LOCAL_APPS = [
     'calendario.api.apps.ApiConfig',
+    'calendario.calendario.apps.CalendarioConfig',
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -265,20 +266,15 @@ LOGGING = {
 # ------------------------------------------------------------------------------
 
 PIPELINE = {
-    'PIPELINE_ENABLED': True,
+    'PIPELINE_ENABLED': False,
     'JS_COMPRESSOR': False,
     'CSS_COMPRESSOR': False,
     'STYLESHEETS': {
         'master': {
             'source_filenames': (
-              #'bootstrap/dist/css/bootstrap.css',
-              #'jasny-bootstrap/dist/css/jasny-bootstrap.css',
-              #'datatables/media/css/jquery.dataTables.css',
-              #'datatables/media/css/dataTables.bootstrap.css',
-              #'bootstrap-select/dist/css/bootstrap-select.css',
-              #'login.css',
-              #'font-awesome/css/font-awesome.css',
-            ),
+              'bootstrap/dist/css/bootstrap.css',
+              'bootstrap-calendar/css/calendar.min.css',
+                     ),
             'output_filename': 'css/master.css',
         },
     },
@@ -290,6 +286,7 @@ PIPELINE = {
               'underscore/underscore-min.js',
               'bootstrap-calendar/js/calendar.min.js',
               'bootstrap-calendar/js/language/pt-BR.js',
+              'fontawesome/svg-with-js/js/fontawesome-all.min.js',
             ),
             'output_filename': 'js/master.js',
         }
