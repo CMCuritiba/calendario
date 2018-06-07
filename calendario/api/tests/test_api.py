@@ -16,7 +16,11 @@ class JSONFakeTest(TestCase):
 
 	def test_retorna_entradas(self):
 		response = self.client.get('/api/get_fake_calendario', follow=True)
-		self.assertEqual(response.data[0]['descricao'], 'Reunião sobre Zacarianismo')
+		self.assertEqual(response.data[0]['title'], 'Reunião sobre Zacarianismo')
+
+	def test_retorna_url(self):
+		response = self.client.get('/api/get_fake_calendario', follow=True)
+		self.assertEqual(response.data[2]['url'], 'teste_url_evento')
 
 	def test_setor(self):
 		response = self.client.get('/api/get_fake_calendario', follow=True)
@@ -25,3 +29,7 @@ class JSONFakeTest(TestCase):
 	def test_pessoa (self):
 		response = self.client.get('/api/get_fake_calendario', follow=True)
 		self.assertEqual(response.data[1]['pessoa'], 3)
+
+	def test_cclass (self):
+		response = self.client.get('/api/get_fake_calendario', follow=True)
+		self.assertEqual(response.data[2]['cclass'], 'event-warning')

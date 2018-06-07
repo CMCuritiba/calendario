@@ -13,6 +13,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 urlpatterns = [
     re_path(settings.ADMIN_URL, admin.site.urls),
     re_path(r'^api/', include('calendario.api.urls')),
+    re_path(r'^calendario/', include('calendario.calendario.urls')),
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
