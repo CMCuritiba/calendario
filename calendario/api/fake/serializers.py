@@ -18,3 +18,6 @@ class CalendarioSerializer(serializers.Serializer):
 		for field, value in validated_data.items():
 			setattr(instance, field, value)
 		return instance
+
+	def calendario_list(request):
+		return None
