@@ -1,6 +1,7 @@
 from rest_framework.test import APITestCase, APIRequestFactory, APIClient
 from django.test import TestCase, Client
 from django.urls import reverse
+import json
 
 
 class JSONFakeTest(TestCase):
@@ -16,20 +17,25 @@ class JSONFakeTest(TestCase):
 
 	def test_retorna_entradas(self):
 		response = self.client.get('/api/get_fake_calendario', follow=True)
-		self.assertEqual(response.data[0]['title'], 'Reunião sobre Zacarianismo')
+		data = json.loads(response.content.decode('utf-8'))
+		self.assertIn('Reunião', data['result'][0]['title'])
 
 	def test_retorna_url(self):
 		response = self.client.get('/api/get_fake_calendario', follow=True)
-		self.assertEqual(response.data[2]['url'], 'teste_url_evento')
+		data = json.loads(response.content.decode('utf-8'))
+		self.assertEqual(data['result'][0]['url'], 'http://google.com')
 
 	def test_setor(self):
 		response = self.client.get('/api/get_fake_calendario', follow=True)
-		self.assertEqual(response.data[0]['setor'], 4)
+		data = json.loads(response.content.decode('utf-8'))
+		self.assertEqual(data['result'][0]['setor'], 4)
 
 	def test_pessoa (self):
 		response = self.client.get('/api/get_fake_calendario', follow=True)
-		self.assertEqual(response.data[1]['pessoa'], 3)
+		data = json.loads(response.content.decode('utf-8'))
+		self.assertEqual(data['result'][0]['pessoa'], 3)
 
 	def test_cclass (self):
 		response = self.client.get('/api/get_fake_calendario', follow=True)
-		self.assertEqual(response.data[2]['cclass'], 'event-warning')
+		data = json.loads(response.content.decode('utf-8'))
+		self.assertIn('event', data['result'][0]['class'])

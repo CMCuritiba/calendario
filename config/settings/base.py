@@ -281,11 +281,11 @@ PIPELINE = {
     'JAVASCRIPT': {
         'master': {
             'source_filenames': (
-              'jquery/dist/jquery.min.js',
+              'jquery/jquery.js',
               'bootstrap/dist/js/bootstrap.min.js',
               'underscore/underscore-min.js',
-              'bootstrap-calendar/js/calendar.min.js',
               'bootstrap-calendar/js/language/pt-BR.js',
+              'bootstrap-calendar/js/calendar.min.js',
               'fontawesome/svg-with-js/js/fontawesome-all.min.js',
             ),
             'output_filename': 'js/master.js',
@@ -300,7 +300,8 @@ STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
 
 BOWER_COMPONENTS_ROOT = str(ROOT_DIR.path('components'))
 BOWER_INSTALLED_APPS = (
-    'jquery',
+    'jquery#1.9.1',
+    #'jquery',
     'underscore',
     'bootstrap',
     'bootstrap-calendar',
