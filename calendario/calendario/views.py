@@ -10,5 +10,7 @@ from datetime import datetime
 from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic import TemplateView	
 
+from autentica.util.mixin import CMCLoginRequired, CMCAdminLoginRequired
+
 class CalendarioIndex(SuccessMessageMixin, TemplateView):
 	template_name = 'calendario/index.html'

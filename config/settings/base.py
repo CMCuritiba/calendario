@@ -46,6 +46,9 @@ THIRD_PARTY_APPS = [
      'djangobower',
      'crispy_forms',
      'rest_framework',
+     'django_python3_ldap',
+     'ldapdb',
+     'autentica',
 ]
 
 # Apps specific for this project go here.
@@ -67,8 +70,14 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'autentica.lib.error_handler.HandleBusinessExceptionMiddleware'
     # removido no Django 2: 'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
 ]
+
+# ALTERAÇÕES NO USER PARA GUARDAR INFO DO LDAP
+# ------------------------------------------------------------------------------
+
+AUTH_USER_MODEL = 'autentica.User'
 
 # DEBUG
 # ------------------------------------------------------------------------------
@@ -96,9 +105,15 @@ MANAGERS = ADMINS
 # ------------------------------------------------------------------------------
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#databases
 DATABASES = {
+    'ldap': {
+        'ENGINE': 'ldapdb.backends.ldap',
+        'NAME': env('LDAP_AUTH_URL'),
+     },
     'default': env.db(),
 }
 DATABASES['default']['ATOMIC_REQUESTS'] = True
+
+DATABASE_ROUTERS = ['ldapdb.router.Router']
 
 
 # GENERAL CONFIGURATION
@@ -222,6 +237,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # AUTHENTICATION CONFIGURATION
 # ------------------------------------------------------------------------------
 AUTHENTICATION_BACKENDS = [
+    "django_python3_ldap.auth.LDAPBackend",
     'django.contrib.auth.backends.ModelBackend',
  ]
 
@@ -313,3 +329,29 @@ BOWER_INSTALLED_APPS = (
     'fontawesome',
     #'bootstrap-select'
 )
+
+# LDAP
+# ------------------------------------------------------------------------------
+#LDAP_AUTH_URL = "ldap://ldap"
+LDAP_AUTH_URL = env('LDAP_AUTH_URL', default='')
+LDAP_AUTH_USE_TLS = env('LDAP_AUTH_USE_TLS', default=False, cast=bool)
+LDAP_AUTH_SEARCH_BASE = env('LDAP_AUTH_SEARCH_BASE', default='')
+LDAP_AUTH_OBJECT_CLASS = env('LDAP_AUTH_OBJECT_CLASS', default='')
+LDAP_AUTH_USER_FIELDS = {
+    "username": env('LDAP_AUTH_USER_FIELDS_USERNAME', default=''),
+    "first_name": env('LDAP_AUTH_USER_FIELDS_FIRST_NAME', default=''),
+    "last_name": env('LDAP_AUTH_USER_FIELDS_LAST_NAME', default=''),
+    "email": env('LDAP_AUTH_USER_FIELDS_EMAIL', default=''),
+    #"matricula": env('LDAP_AUTH_USER_FIELDS_MATRICULA', default=''),
+    "pessoa": env('LDAP_AUTH_USER_FIELDS_PESSOA', default=''),
+    "lotado": env('LDAP_AUTH_USER_FIELDS_LOTADO', default=''),
+    "chefia": env('LDAP_AUTH_USER_FIELDS_CHEFIA', default=''),
+}
+LDAP_AUTH_USER_LOOKUP_FIELDS = ("username",)
+LDAP_AUTH_CLEAN_USER_DATA = "django_python3_ldap.utils.clean_user_data"
+LDAP_AUTH_SYNC_USER_RELATIONS = "django_python3_ldap.utils.sync_user_relations"
+LDAP_AUTH_FORMAT_SEARCH_FILTERS = "django_python3_ldap.utils.format_search_filters"
+LDAP_AUTH_FORMAT_USERNAME = "django_python3_ldap.utils.format_username_openldap"
+LDAP_AUTH_ACTIVE_DIRECTORY_DOMAIN = None
+LDAP_AUTH_CONNECTION_USERNAME = None
+LDAP_AUTH_CONNECTION_PASSWORD = None
