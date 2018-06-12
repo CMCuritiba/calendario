@@ -8,3 +8,11 @@ from django.db import transaction
 from django.core.exceptions import ValidationError
 
 from datetime import datetime
+
+class Entry(models.Model):
+    ident = models.IntegerField()
+    local = models.CharField(max_length=300)
+    status = models.CharField(max_length=1)
+
+    def __str__(self):
+        return self.local
