@@ -28,3 +28,12 @@ pytz==2018.4
 six==1.11.0
 
 sqlparse==0.2.4
+
+https://github.com/CMCuritiba/django-cmcldapauth/raw/master/dist/django-cmcldapauth-0.2.tar.gz
+
+django-python3-ldap==0.11.1
+django-ldapdb==1.0.0
+
+django-braces==1.13.0
+
+simplejson==3.15.0
