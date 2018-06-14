@@ -9,14 +9,14 @@ from django.core.exceptions import ValidationError
 
 from datetime import datetime
 
-class Entry(models.Model):
-    ident = models.IntegerField()
+#---------------------------------------------------------------------------------------------
+# Model Local
+#---------------------------------------------------------------------------------------------
+
+class Local(models.Model):
     local = models.CharField(max_length=300)
     status = models.CharField(max_length=1)
-
-    def __str__(self):
-        return self.local
-
+    
 #---------------------------------------------------------------------------------------------
 # Model Evento
 #---------------------------------------------------------------------------------------------

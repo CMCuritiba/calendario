@@ -6,9 +6,10 @@ from django.urls import reverse
 from django.contrib.auth import get_user_model
 from datetime import datetime
 
+from ..factories import LocalFactory
 from ..factories import EventoFactory
 
-from ..models import Entry
+from ..models import Local
 
 class LocalModelTest(TestCase):
 	
@@ -24,13 +25,18 @@ class LocalModelTest(TestCase):
 	def test_dummy(self):
 		self.assertEqual(1,1)
 
-	def test_local(self):
-		entry = Entry(local="Camara Municipal de Curitiba")
-		self.assertEqual(str(entry), entry.local)
+	def test_local_status_ok(self):
+		local = LocalFactory.create()
+		self.assertEqual(local.local, 'Camara Municipal de Curitiba')
+		self.assertEqual(local.status, 'A')
 
-	def test_status(self):
-		entry = Entry(status="")
-		self.assertRaises(TypeError, entry.status)
+	def test_insere_local_nulo(self):
+		with self.assertRaises(IntegrityError):
+			local = LocalFactory.create(local=None)
+
+	def test_insere_status_nulo(self):
+		with self.assertRaises(IntegrityError):
+			local = LocalFactory.create(status=None)
 
 class EventoModelTest(TestCase):
 
@@ -94,4 +100,3 @@ class EventoModelTest(TestCase):
 		evento = EventoFactory.create()
 		with self.assertRaises(IntegrityError):
 			evento = EventoFactory.create()
-

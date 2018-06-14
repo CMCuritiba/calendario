@@ -3,7 +3,15 @@
 from factory.django import DjangoModelFactory
 from datetime import datetime
 
+from .models import Local
 from .models import Evento
+
+class LocalFactory(DjangoModelFactory):
+	class Meta:
+		model = Local
+	id = 1
+	local = 'Camara Municipal de Curitiba'
+	status = 'A'
 
 class EventoFactory(DjangoModelFactory):
 	class Meta:
