@@ -9,6 +9,7 @@ from . import views
 
 urlpatterns = [
 	path('get_fake_calendario/', views.get_fake_calendario, name='get_fake_calendario'),
+	path('get_calendario/', views.get_calendario, name='get_calendario'),
 ]	
 
 #urlpatterns += router.urls

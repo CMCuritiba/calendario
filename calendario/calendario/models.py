@@ -7,6 +7,8 @@ from django.utils import timezone
 from django.db import transaction
 from django.core.exceptions import ValidationError
 
+from tinymce import models as tinymce_models
+
 from datetime import datetime
 
 class Entry(models.Model):
@@ -30,7 +32,7 @@ class Evento(models.Model):
 	CLASSE_SUCESSO = 'SUCESSO'
 	CLASSE_INFO = 'INFO'
 	CLASSE_ATENCAO = 'ATENÇÃO'
-	CLASSE_NULO = 'NULO'
+	CLASSE_NULO = None
 	CLASSE_CHOICES = (
 		(CLASSE_IMPORTANTE, 'IMPORTANTE'),
 		(CLASSE_ESPECIAL, 'ESPECIAL'),
@@ -38,22 +40,23 @@ class Evento(models.Model):
 		(CLASSE_SUCESSO, 'SUCESSO'),
 		(CLASSE_INFO, 'INFO'),
 		(CLASSE_ATENCAO, 'ATENÇÃO'),
-		(CLASSE_NULO, None),
+		(CLASSE_NULO, 'NULO'),
 	)
 
-	STATUS_ATIVO = 'ATIVO'
-	STATUS_INATIVO = 'INATIVO'
+	STATUS_ATIVO = 'A'
+	STATUS_INATIVO = 'I'
 	STATUS_CHOICES = (
-		(STATUS_ATIVO, 'A'),
-		(STATUS_INATIVO, 'I')
+		(STATUS_ATIVO, 'ATIVO'),
+		(STATUS_INATIVO, 'INATIVO')
 	)
 
 	evento = models.CharField(max_length=300)
-	url = models.URLField(null=True, blank=True)
+	url = models.CharField(null=True, blank=True, max_length=100)
 	classe = models.CharField(max_length=10, null=True, blank=True, choices=CLASSE_CHOICES, default=CLASSE_NULO)
 	inicio = models.DateTimeField()
 	fim = models.DateTimeField()
 	local = models.IntegerField() # depois mudar para chave estrangeira Local
+	descricao = tinymce_models.HTMLField(null=True, blank=True)
 	pessoa = models.IntegerField()
 	setor = models.IntegerField()
 	status = models.CharField(max_length=1, choices=STATUS_CHOICES, default=STATUS_ATIVO)

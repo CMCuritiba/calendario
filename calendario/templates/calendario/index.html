@@ -30,6 +30,21 @@
 		</div>
 	</div>
 
+	<div class="modal fade" id="events-modal">
+        <div class="modal-dialog" style="width:1024px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body" style="height: 400px">
+                </div>
+                <div class="modal-footer">
+                    <a href="#" data-dismiss="modal" class="btn">Fechar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}
 
 
@@ -40,13 +55,14 @@
 			tmpl_path: '/static/bootstrap-calendar/tmpls/',
 			language: 'pt-BR',
 			first_day: 1,
-			view: 'week',
+			view: 'month',
+			modal: '#events-modal',
 			onAfterViewLoad: function(view) {
 				$('.btn-group button').removeClass('active');
 				$('button[data-calendar-view="' + view + '"]').addClass('active');
 				$('.page-header h3').text('Teste Calendário - ' + this.getTitle());
 			},
-			events_source: '/api/get_fake_calendario/'
+			events_source: '/api/get_calendario/'
 		});
 
 		(function($) {
@@ -73,8 +89,3 @@
 
 
 {% endblock %}
-
-
-
-git checkout develop
-git merge feature_branch
