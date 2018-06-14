@@ -11,14 +11,22 @@ from tinymce import models as tinymce_models
 
 from datetime import datetime
 
-class Entry(models.Model):
-    ident = models.IntegerField()
-    local = models.CharField(max_length=300)
-    status = models.CharField(max_length=1)
+#---------------------------------------------------------------------------------------------
+# Model Local
+#---------------------------------------------------------------------------------------------
 
-    def __str__(self):
-        return self.local
+class Local(models.Model):
 
+	STATUS_ATIVO = 'A'
+	STATUS_INATIVO = 'I'
+	STATUS_CHOICES = (
+		(STATUS_ATIVO, 'ATIVO'),
+		(STATUS_INATIVO, 'INATIVO')
+	)
+
+	local = models.CharField(max_length=300)
+	status = models.CharField(max_length=1, choices=STATUS_CHOICES, default=STATUS_ATIVO)
+    
 #---------------------------------------------------------------------------------------------
 # Model Evento
 #---------------------------------------------------------------------------------------------
@@ -55,7 +63,7 @@ class Evento(models.Model):
 	classe = models.CharField(max_length=10, null=True, blank=True, choices=CLASSE_CHOICES, default=CLASSE_NULO)
 	inicio = models.DateTimeField()
 	fim = models.DateTimeField()
-	local = models.IntegerField() # depois mudar para chave estrangeira Local
+	local = models.ForeignKey(Local, models.CASCADE)
 	descricao = tinymce_models.HTMLField(null=True, blank=True)
 	pessoa = models.IntegerField()
 	setor = models.IntegerField()
