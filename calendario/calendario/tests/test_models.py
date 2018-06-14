@@ -56,7 +56,7 @@ class EventoModelTest(TestCase):
 		evento = EventoFactory.create()
 		self.assertEqual(evento.id, 1)
 		self.assertEqual(evento.evento, 'Palestra Sobre Ponto Biométrico')
-		self.assertEqual(evento.url, 'http://www.cmc.pr.gov.br')
+		self.assertEqual(evento.url, '/calendario/evento/detalhe/1')
 		self.assertEqual(evento.classe, 'IMPORTANTE')
 		self.assertEqual(evento.inicio, datetime(2018, 6, 8, 12, 0))
 		self.assertEqual(evento.fim, datetime(2018, 6, 8, 18, 0))

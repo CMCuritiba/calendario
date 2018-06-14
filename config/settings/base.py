@@ -49,6 +49,7 @@ THIRD_PARTY_APPS = [
      'django_python3_ldap',
      'ldapdb',
      'autentica',
+     'tinymce',
 ]
 
 # Apps specific for this project go here.
@@ -70,7 +71,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'autentica.lib.error_handler.HandleBusinessExceptionMiddleware'
+    'autentica.lib.error_handler.HandleBusinessExceptionMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # removido no Django 2: 'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
 ]
 
@@ -290,7 +292,8 @@ PIPELINE = {
             'source_filenames': (
               'bootstrap/dist/css/bootstrap.css',
               'bootstrap-calendar/css/calendar.min.css',
-                     ),
+              'callout.css',
+            ),
             'output_filename': 'css/master.css',
         },
     },
@@ -355,3 +358,13 @@ LDAP_AUTH_FORMAT_USERNAME = "django_python3_ldap.utils.format_username_openldap"
 LDAP_AUTH_ACTIVE_DIRECTORY_DOMAIN = None
 LDAP_AUTH_CONNECTION_USERNAME = None
 LDAP_AUTH_CONNECTION_PASSWORD = None
+
+X_FRAME_OPTIONS = 'SAMEORIGIN'
+
+TINYMCE_SPELLCHECKER = True
+TINYMCE_COMPRESSOR = True
+TINYMCE_DEFAULT_CONFIG = {
+    'theme': "advanced",
+    'plugins': "spellchecker",
+    'theme_advanced_buttons3_add': "|,spellchecker",
+}

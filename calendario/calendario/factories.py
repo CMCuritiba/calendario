@@ -19,7 +19,7 @@ class EventoFactory(DjangoModelFactory):
 
 	id = 1
 	evento = 'Palestra Sobre Ponto Biométrico'
-	url = 'http://www.cmc.pr.gov.br'
+	url = '/calendario/evento/detalhe/1'
 	classe = 'IMPORTANTE'
 	inicio = datetime(2018, 6, 8, 12, 0)
 	fim = datetime(2018, 6, 8, 18, 0)
