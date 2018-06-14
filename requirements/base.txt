@@ -37,5 +37,3 @@ django-ldapdb==1.0.0
 django-braces==1.13.0
 
 simplejson==3.15.0
-
-factory-boy==2.11.1
