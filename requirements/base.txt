@@ -39,3 +39,5 @@ django-braces==1.13.0
 simplejson==3.15.0
 
 factory-boy==2.11.1
+
+django-tinymce==2.7.0
