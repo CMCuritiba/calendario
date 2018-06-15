@@ -3,7 +3,7 @@ from django.test import TestCase, Client
 from django.urls import reverse
 import json
 
-from calendario.calendario.factories import EventoFactory
+from calendario.calendario.factories import EventoFactory, LocalFactory
 
 
 class JSONFakeTest(TestCase):
@@ -83,3 +83,32 @@ class JSONCalendarioTest(TestCase):
 		response = self.client.get('/api/get_calendario/', follow=True, pk=1)
 		data = json.loads(response.content.decode('utf-8'))
 		self.assertEqual('event-important', data['result'][0]['class'])
+
+class JSONLocalTest(TestCase):
+	def setup(self):
+		self.factory = APIRequestFactory()
+
+	def test_dummy(self):
+		self.assertEqual(1,1)
+
+	def test_url(self):
+		response = self.client.get('/api/get_locais/', follow=True)
+		self.assertEqual(response.status_code, 200)
+
+	def test_retorna_entradas(self):
+		local = LocalFactory.create()
+		response = self.client.get('/api/get_locais/', follow=True, pk=1)
+		data = json.loads(response.content.decode('utf-8'))
+		self.assertIn('Camara', data[0]['local'])
+
+	def test_local(self):
+		local = LocalFactory.create()
+		response = self.client.get('/api/get_locais/', follow=True, pk=1)
+		data = json.loads(response.content.decode('utf-8'))
+		self.assertEqual('Camara Municipal de Curitiba', data[0]['local'])
+
+	def test_status(self):
+		local = LocalFactory.create()
+		response = self.client.get('/api/get_locais/', follow=True, pk=1)
+		data = json.loads(response.content.decode('utf-8'))
+		self.assertEqual('ATIVO', data[0]['status'])		

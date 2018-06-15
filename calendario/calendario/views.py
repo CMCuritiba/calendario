@@ -23,3 +23,6 @@ class CalendarioIndex(SuccessMessageMixin, TemplateView):
 class CalendarioEventoDetails(SuccessMessageMixin, DetailView):
 	template_name = 'calendario/evento/details.html'
 	model = Evento
+
+class LocalIndex(CMCLoginRequired, SuccessMessageMixin, TemplateView):
+    template_name = 'calendario/local/index.html'	

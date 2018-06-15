@@ -20,5 +20,12 @@ def gera_class(classe):
 	else:
 		return ''
 
+def gera_status(status):
+	if status == 'A':
+		return 'ATIVO'
+	elif status == 'I':
+		return 'INATIVO'
+	else:
+		return ''
 
 

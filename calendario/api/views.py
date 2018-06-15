@@ -8,9 +8,9 @@ from .fake.serializers import CalendarioSerializer
 from .fake.objects import Calendario
 from datetime import datetime
 from django.http import JsonResponse
-from calendario.util.util import gera_url, gera_class
+from calendario.util.util import gera_url, gera_class, gera_status
 
-from calendario.calendario.models import Evento
+from calendario.calendario.models import Evento, Local
 
 '''
 # -----------------------------------------------------------------------------------
@@ -88,3 +88,19 @@ def get_calendario(request):
 	}
 
 	return JsonResponse(responseData, safe=True)	
+
+# -----------------------------------------------------------------------------------
+# retorna lista de locais
+# -----------------------------------------------------------------------------------
+def get_locais(request):
+	entradas = Local.objects.all().order_by("local")
+
+	entradas_json = []
+	for c in entradas:
+		e_json = {}
+		e_json['id'] = c.id
+		e_json['local'] = c.local
+		e_json['status'] = gera_status(c.status)
+		entradas_json.append(e_json)
+
+	return JsonResponse(entradas_json, safe=False)		
