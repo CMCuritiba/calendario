@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from factory.django import DjangoModelFactory
+from factory import SubFactory
 from datetime import datetime
 
 from .models import Local
@@ -23,6 +24,6 @@ class EventoFactory(DjangoModelFactory):
 	classe = 'IMPORTANTE'
 	inicio = datetime(2018, 6, 8, 12, 0)
 	fim = datetime(2018, 6, 8, 18, 0)
-	local = 1
+	local = SubFactory(LocalFactory)
 	pessoa = 6543
 	setor = 171

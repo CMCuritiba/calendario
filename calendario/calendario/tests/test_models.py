@@ -62,7 +62,7 @@ class EventoModelTest(TestCase):
 		self.assertEqual(evento.fim, datetime(2018, 6, 8, 18, 0))
 		self.assertEqual(evento.pessoa, 6543)
 		self.assertEqual(evento.setor, 171)
-		self.assertEqual(evento.local, 1)
+		self.assertEqual(evento.local.id, 1)
 
 	def test_evento_insere_evento_nulo(self):
 		with self.assertRaises(IntegrityError):
