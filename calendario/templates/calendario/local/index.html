@@ -48,7 +48,7 @@
           </div>
           <div class="modal-body">
             <h4>Local: <span id="local_local" name="local_local"/></h4>
-            <form class="exclui" method="POST" action="/calendario/local/exclui/">{% csrf_token %}
+            <form class="exclui" method="POST" >{% csrf_token %}
               <div class="form-group">
                 <input type="hidden" name="pk" id="pk" />
               </div>
@@ -179,7 +179,7 @@
         }
 
         function exclui() {
-            request_url = '/calendario/local/local/exclui/' + $('#pk').val() + '/';
+            request_url = '/api/local/exclui/';
 
             $.ajax({
                 url: request_url,
@@ -189,7 +189,7 @@
                 data: $('form.exclui').serialize(),
                 success: function(result){
                     console.log($('form.exclui').serialize());
-                    tableGrupos.ajax.reload(null, false);
+                    tableLocais.ajax.reload(null, false);
                 },
                 error: function(xhr, status, error) {
                     console.log(status);

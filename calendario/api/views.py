@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from django.conf import settings
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
@@ -10,7 +11,10 @@ from datetime import datetime
 from django.http import JsonResponse
 from calendario.util.util import gera_url, gera_class, gera_status
 
+import json
+
 from calendario.calendario.models import Evento, Local
+from calendario.calendario.forms import JSONLocalForm
 
 '''
 # -----------------------------------------------------------------------------------
@@ -104,3 +108,19 @@ def get_locais(request):
 		entradas_json.append(e_json)
 
 	return JsonResponse(entradas_json, safe=False)		
+
+# -----------------------------------------------------------------------------------
+# chamada API segura para exclusão (inativação de locais)
+# -----------------------------------------------------------------------------------
+def call_local_exclui(request):
+	if request.method == 'POST':
+		widget_json = {}
+		pk = request.POST.get('pk', None)
+		if (pk != None):
+			local = Local.objects.get(pk=pk)
+			form = JSONLocalForm(request.POST)
+			if (form.is_valid()):
+				local.status = 'I'
+				local.save()
+			response = JsonResponse({'status':'true','message':'Local alterado com sucesso'}, status=200)
+	return response
