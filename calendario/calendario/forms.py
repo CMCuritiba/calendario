@@ -15,9 +15,40 @@ from decimal import Decimal
 
 from django.contrib.sessions.backends.db import SessionStore
 
+from calendario.calendario.models import Evento, Local
+
+#------------------------------------------------------------------------------------------
+# classe form utilizada para validar JSON de alteração de status dos locais
+#------------------------------------------------------------------------------------------
 class JSONLocalForm(forms.Form):
 
 	def __init__(self, *args, **kwargs):
 		super(JSONLocalForm, self).__init__(*args, **kwargs)
 
 		self.fields['pk'] = forms.IntegerField()
+
+#------------------------------------------------------------------------------------------
+# classe form para manutenção de locais
+#------------------------------------------------------------------------------------------
+class LocalForm(forms.ModelForm):
+
+    class Meta:
+        model = Local
+        fields = ['local', 'status']
+
+    def __init__(self, *args, **kwargs):
+        super(LocalForm, self).__init__(*args, **kwargs)
+
+        self.helper = FormHelper()
+        self.helper.form_tag = False
+
+        self.helper.layout = Layout(
+            Div(
+                Div('local', css_class='col-md-12',),
+                css_class='col-md-12 row',
+            ),
+            Div(
+                Div('status', css_class='col-md-12',),
+                css_class='col-md-3 row',
+            ),
+        )		

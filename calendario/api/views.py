@@ -113,6 +113,8 @@ def get_locais(request):
 # chamada API segura para exclusão (inativação de locais)
 # -----------------------------------------------------------------------------------
 def call_local_exclui(request):
+	response = JsonResponse({'status':'false','message':'Erro ao tentar alterar local'}, status=404)
+
 	if request.method == 'POST':
 		widget_json = {}
 		pk = request.POST.get('pk', None)
@@ -122,5 +124,5 @@ def call_local_exclui(request):
 			if (form.is_valid()):
 				local.status = 'I'
 				local.save()
-			response = JsonResponse({'status':'true','message':'Local alterado com sucesso'}, status=200)
+				response = JsonResponse({'status':'true','message':'Local alterado com sucesso'}, status=200)
 	return response

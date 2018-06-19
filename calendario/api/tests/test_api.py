@@ -122,16 +122,10 @@ class JSONCallSecureLocalExcluiTest(TestCase):
 		self.assertEqual(1,1)		
 
 	def test_url(self):
-		json_dict = {
-			"id": 1
-		}
-		
-		response = self.client.generic(
-			'POST',
+		local = LocalFactory.create()	
+		response = self.client.post(
 			'/api/local/exclui/', 
-			json.dumps(json_dict),
+			{'pk': 1}
 		)
 
-		print(response.content)
-		
 		self.assertEqual(response.status_code, 200)
