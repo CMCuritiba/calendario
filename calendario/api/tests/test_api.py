@@ -112,3 +112,26 @@ class JSONLocalTest(TestCase):
 		response = self.client.get('/api/get_locais/', follow=True, pk=1)
 		data = json.loads(response.content.decode('utf-8'))
 		self.assertEqual('ATIVO', data[0]['status'])		
+
+class JSONCallSecureLocalExcluiTest(TestCase):
+	def setup(self):
+		self.factory = APIRequestFactory()
+		super(JSONCallSecureLocalExcluiTest, self).setUp()
+
+	def test_dummy(self):
+		self.assertEqual(1,1)		
+
+	def test_url(self):
+		json_dict = {
+			"id": 1
+		}
+		
+		response = self.client.generic(
+			'POST',
+			'/api/local/exclui/', 
+			json.dumps(json_dict),
+		)
+
+		print(response.content)
+		
+		self.assertEqual(response.status_code, 200)
