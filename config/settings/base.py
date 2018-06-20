@@ -81,6 +81,10 @@ MIDDLEWARE = [
 
 AUTH_USER_MODEL = 'autentica.User'
 
+# SERVIDOR DE MICRO SERVICOS
+# ------------------------------------------------------------------------------
+MSCMC_SERVER = env('MSCMC_SERVER')
+
 # DEBUG
 # ------------------------------------------------------------------------------
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#debug
