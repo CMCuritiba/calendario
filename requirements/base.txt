@@ -44,3 +44,10 @@ django-tinymce==2.7.0
 
 # Python-PostgreSQL Database Adapter
 psycopg2
+
+# Unipath
+unipath
+
+# Redis support
+django-redis==4.7.0
+redis>=2.10.5
