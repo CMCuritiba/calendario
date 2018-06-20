@@ -12,6 +12,7 @@ from django.http import JsonResponse
 from calendario.util.util import gera_url, gera_class, gera_status
 
 import json
+import datetime
 
 from calendario.calendario.models import Evento, Local
 from calendario.calendario.forms import JSONLocalForm
@@ -126,3 +127,32 @@ def call_local_exclui(request):
 				local.save()
 				response = JsonResponse({'status':'true','message':'Local alterado com sucesso'}, status=200)
 	return response
+# -----------------------------------------------------------------------------------
+# retorna lista de eventos
+# -----------------------------------------------------------------------------------
+def get_eventos(request):
+	response = JsonResponse({'status':'false','message':'Você precisa estar logado '}, status=404)
+
+	if request.user.is_anonymous or not request.user.is_authenticated or 'setor_id' not in request.session:
+		return response
+	else :
+		pessoa = request.session['pessoa_pessoa']
+		setor = request.session['setor_id']
+
+		entradas = Evento.objects.filter(setor=setor)
+
+		entradas_json = []
+		for c in entradas:
+			e_json = {}
+			e_json['id'] = c.id
+			e_json['inicio'] = c.inicio.strftime('%d/%m/%Y')
+			e_json['fim'] = c.fim.strftime('%d/%m/%Y')
+			e_json['url'] = gera_url(c.id)
+			e_json['evento'] = c.evento
+			e_json['setor'] = c.setor
+			e_json['pessoa'] = c.pessoa
+			e_json['status'] = gera_status(c.status)
+			e_json['classe'] = gera_class(c.classe)
+			entradas_json.append(e_json)
+
+		return JsonResponse(entradas_json, safe=False)		
