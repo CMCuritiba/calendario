@@ -18,14 +18,23 @@ from .models import Evento, Local
 from .forms import LocalForm
 
 
+#--------------------------------------------------------------------------------------
+#
+#--------------------------------------------------------------------------------------
 @method_decorator(xframe_options_sameorigin, name='dispatch')
 class CalendarioIndex(SuccessMessageMixin, TemplateView):
 	template_name = 'calendario/index.html'
 
+#--------------------------------------------------------------------------------------
+#
+#--------------------------------------------------------------------------------------
 class CalendarioEventoDetails(SuccessMessageMixin, DetailView):
 	template_name = 'calendario/evento/details.html'
 	model = Evento
 
+#--------------------------------------------------------------------------------------
+#
+#--------------------------------------------------------------------------------------
 class LocalIndex(CMCLoginRequired, SuccessMessageMixin, TemplateView):
     template_name = 'calendario/local/index.html'	
 
@@ -48,3 +57,9 @@ class LocalUpdate(CMCAdminLoginRequired, SuccessMessageMixin, UpdateView):
     success_url = '/calendario/local/'
     success_message = "Local alterado com sucesso"
     template_name = 'calendario/local/update.html'       
+
+#--------------------------------------------------------------------------------------
+#
+#--------------------------------------------------------------------------------------
+class EventoIndex(CMCLoginRequired, SuccessMessageMixin, TemplateView):
+    template_name = 'calendario/evento/index.html'       

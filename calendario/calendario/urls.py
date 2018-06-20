@@ -9,4 +9,5 @@ urlpatterns = [
 	path('local/', views.LocalIndex.as_view(), name='local-index'),
 	path('local/novo/', views.LocalCreate.as_view(), name='local-novo'),
 	path('local/altera/<int:pk>/', views.LocalUpdate.as_view(), name='local-altera'),
+	path('evento/', views.EventoIndex.as_view(), name='evento-index'),
 ]	
