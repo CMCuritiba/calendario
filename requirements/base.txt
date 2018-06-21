@@ -40,7 +40,7 @@ simplejson==3.15.0
 
 factory-boy==2.11.1
 
-django-tinymce==2.7.0
+django-tinymce4-lite==1.7.1
 
 # Python-PostgreSQL Database Adapter
 psycopg2

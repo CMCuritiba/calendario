@@ -7,7 +7,7 @@ from django.utils import timezone
 from django.db import transaction
 from django.core.exceptions import ValidationError
 
-from tinymce import models as tinymce_models
+from tinymce import HTMLField
 
 from datetime import datetime
 
@@ -26,6 +26,12 @@ class Local(models.Model):
 
 	local = models.CharField(max_length=300)
 	status = models.CharField(max_length=1, choices=STATUS_CHOICES, default=STATUS_ATIVO)
+
+	def __unicode__(self):
+		return self.local
+
+	def __str__(self):
+		return self.local		
     
 #---------------------------------------------------------------------------------------------
 # Model Evento
@@ -64,7 +70,7 @@ class Evento(models.Model):
 	inicio = models.DateTimeField()
 	fim = models.DateTimeField()
 	local = models.ForeignKey(Local, models.CASCADE)
-	descricao = tinymce_models.HTMLField(null=True, blank=True)
+	descricao = HTMLField(null=True, blank=True)
 	pessoa = models.IntegerField()
 	setor = models.IntegerField()
 	status = models.CharField(max_length=1, choices=STATUS_CHOICES, default=STATUS_ATIVO)

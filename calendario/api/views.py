@@ -13,13 +13,13 @@ import json
 import datetime
 
 from calendario.calendario.models import Evento, Local
-from calendario.calendario.forms import JSONLocalForm
+from calendario.calendario.forms import JSONLocalForm, JSONEventoForm
 
 # -----------------------------------------------------------------------------------
 # retorna eventos para popular calendário
 # -----------------------------------------------------------------------------------
 def get_calendario(request):
-	entradas = Evento.objects.all()
+	entradas = Evento.objects.filter(status='A')
 
 	entradas_json = []
 	for c in entradas:
@@ -115,7 +115,7 @@ def call_evento_exclui(request):
 		pk = request.POST.get('pk', None)
 		if (pk != None):
 			evento = Evento.objects.get(pk=pk)
-			form = JSONLocalForm(request.POST)
+			form = JSONEventoForm(request.POST)
 			if (form.is_valid()):
 				evento.status = 'I'
 				evento.save()

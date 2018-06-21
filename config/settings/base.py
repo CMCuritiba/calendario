@@ -3,6 +3,9 @@ from __future__ import absolute_import, unicode_literals
 
 import environ, os
 
+def gettext_noop(s):
+    return s
+
 ROOT_DIR = environ.Path(__file__) - 3
 APPS_DIR = ROOT_DIR.path('calendario')
 
@@ -132,6 +135,10 @@ TIME_ZONE = 'America/Sao_Paulo'
 #USE_TZ=True
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#language-code
 LANGUAGE_CODE = 'pt-BR'
+
+LANGUAGES = [
+    ('pt-br', gettext_noop('Brazilian Portuguese')),
+]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#site-id
 SITE_ID = 1
@@ -380,7 +387,15 @@ X_FRAME_OPTIONS = 'SAMEORIGIN'
 TINYMCE_SPELLCHECKER = True
 TINYMCE_COMPRESSOR = True
 TINYMCE_DEFAULT_CONFIG = {
-    'theme': "advanced",
-    'plugins': "spellchecker",
-    'theme_advanced_buttons3_add': "|,spellchecker",
+    'selector': 'textarea',
+    'theme': 'modern',
+    'plugins': 'link image preview codesample contextmenu table code lists',
+    'toolbar1': 'formatselect | bold italic underline | alignleft aligncenter alignright alignjustify '
+               '| bullist numlist | outdent indent | table | link image | codesample | preview code',
+    'contextmenu': 'formats | link image',
+    'menubar': False,
+    'inline': False,
+    'statusbar': True,
+    'width': 'auto',
+    'height': 360,
 }
