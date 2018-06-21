@@ -6,7 +6,7 @@ from django.contrib.messages.middleware import MessageMiddleware
 
 from autentica.models import User
 
-from ..views import CalendarioIndex, CalendarioEventoDetails, LocalIndex, LocalCreate, LocalUpdate, EventoIndex
+from ..views import CalendarioIndex, CalendarioEventoDetails, LocalIndex, LocalCreate, LocalUpdate, EventoIndex, EventoUpdate
 from ..factories import EventoFactory, LocalFactory
 
 class CalendarioIndexTest(TestCase):
@@ -185,3 +185,38 @@ class EventoIndexTest(TestCase):
 		response.render()
 		self.assertEqual(response.status_code, 200)						
 		self.assertEqual(response.template_name[0], 'calendario/evento/index.html')
+
+class EventoUpdateTest(TestCase):
+	nome_usuario = 'zaca'
+	senha = 'nosferatu'
+
+	def setUp(self):
+		self.user = get_user_model().objects.create_user(self.nome_usuario, password=self.senha)
+		self.user.is_staff = True
+		self.user.is_superuser = True
+		self.user.save()
+		self.factory = RequestFactory()
+
+	def setup_request(self, request):
+		request.user = self.user
+
+		middleware = SessionMiddleware()
+		middleware.process_request(request)
+		request.session.save()
+
+		middleware = MessageMiddleware()
+		middleware.process_request(request)
+		request.session.save()		
+
+	def test_dummy(self):
+		self.assertEqual(1,1)				
+
+	def test_view_ok(self):
+		request = self.factory.get('/calendario/evento/altera/')
+		self.setup_request(request)
+		request.user = self.user
+		evento = EventoFactory.create()
+		response = EventoUpdate.as_view()(request, pk=1)
+		response.render()
+		self.assertEqual(response.status_code, 200)								
+		self.assertEqual(response.template_name[0], 'calendario/evento/update.html')		

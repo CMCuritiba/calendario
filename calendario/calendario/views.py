@@ -10,16 +10,16 @@ from django.views.generic import TemplateView, DetailView
 from django.views.decorators.clickjacking import xframe_options_sameorigin
 from django.utils.decorators import method_decorator
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.http import HttpResponseRedirect, HttpResponse
 
 from autentica.util.mixin import CMCLoginRequired, CMCAdminLoginRequired
 from .models import Evento, Local
-from .forms import LocalForm
+from .forms import LocalForm, EventoForm
 
 
 #--------------------------------------------------------------------------------------
 #
 #--------------------------------------------------------------------------------------
-@method_decorator(xframe_options_sameorigin, name='dispatch')
 class CalendarioIndex(SuccessMessageMixin, TemplateView):
 	template_name = 'calendario/index.html'
 
@@ -61,3 +61,20 @@ class LocalUpdate(CMCAdminLoginRequired, SuccessMessageMixin, UpdateView):
 #--------------------------------------------------------------------------------------
 class EventoIndex(CMCLoginRequired, SuccessMessageMixin, TemplateView):
     template_name = 'calendario/evento/index.html'       
+
+#--------------------------------------------------------------------------------------
+#
+#--------------------------------------------------------------------------------------
+class EventoUpdate(CMCAdminLoginRequired, SuccessMessageMixin, UpdateView):
+    model = Evento
+    form_class = EventoForm
+    success_url = '/calendario/evento/'
+    success_message = "Evento alterado com sucesso"
+    template_name = 'calendario/evento/update.html'           
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.setor = self.request.session['setor_id']
+        obj.pessoa = self.request.session['pessoa_pessoa']
+        obj.save()
+        return super(EventoUpdate, self).form_valid(form)

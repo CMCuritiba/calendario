@@ -1,9 +1,16 @@
+.invalid-feedback {
+    color: red;
+}
+
+.error input, .error select {
+    border: 2px red solid;
+}
 .bs-callout {
     padding: 20px;
     margin: 20px 0;
     border: 1px solid #eee;
     border-left-width: 5px;
-    border-radius: 3px;
+    border-radius: 5px;
 }
 .bs-callout h4 {
     margin-top: 0;
