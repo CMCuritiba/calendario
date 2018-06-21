@@ -327,7 +327,7 @@
                 data: $('form.exclui').serialize(),
                 success: function(result){
                     console.log($('form.exclui').serialize());
-                    tableLocais.ajax.reload(null, false);
+                    tableEventos.ajax.reload(null, false);
                 },
                 error: function(xhr, status, error) {
                     console.log(status);
