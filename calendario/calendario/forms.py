@@ -52,3 +52,60 @@ class LocalForm(forms.ModelForm):
                 css_class='col-md-3 row',
             ),
         )		
+
+#------------------------------------------------------------------------------------------
+# classe de evento
+#------------------------------------------------------------------------------------------
+class EventoForm(forms.ModelForm):
+
+    class Meta:
+        model = Evento
+        fields = ['evento', 'url', 'classe','inicio','fim','descricao','status']
+
+    def __init__(self, *args, **kwargs):
+        super(EventoForm, self).__init__(*args, **kwargs)
+       
+
+        self.fields['classe'].empty_label = "Selecione..."
+        self.fields['status'].empty_label = "Selecione..."
+
+
+        self.helper = FormHelper()
+        self.helper.form_tag = False
+
+        self.helper.layout = Layout(
+            Div(
+                Div('evento', css_class='col-md-12',),
+                css_class='col-md-12 row',
+            ),
+            Div(
+                Div('url', css_class='col-md-12',),
+                css_class='col-md-12 row',
+            ),
+            Div(
+                Div('classe', css_class='col-md-12',),
+                css_class='col-md-=5 row',
+            ),
+            Div(
+                Div('inicio', css_class='col-md-12',),
+                css_class='col-md-5 row',
+            ),
+            Div(
+                Div('fim', css_class='col-md-12',),
+                css_class='col-md-5 row',
+            ),
+            Div(
+                Div('descricao', css_class='col-md-12',),
+                css_class='col-md-12 row',
+            ),
+            Div(
+                Div('status', css_class='col-md-12',),
+                css_class='col-md-3 row',
+            ),
+        )       
+        def clean(self):
+            data = self.cleaned_data
+            if 'evento' in data:
+                if data['evento'] is None:
+                    raise ValidationError('Campo de Evento Obrigatório')
+            return data

@@ -6,7 +6,7 @@ from django.contrib.messages.middleware import MessageMiddleware
 
 from autentica.models import User
 
-from ..views import CalendarioIndex, CalendarioEventoDetails, LocalIndex
+from ..views import CalendarioIndex, CalendarioEventoDetails, LocalIndex, EventoIndex
 from ..factories import EventoFactory
 
 class CalendarioIndexTest(TestCase):
@@ -112,5 +112,38 @@ class LocalCreateTest(TestCase):
 		request = self.factory.get('/calendario/local/novo/')
 		self.setup_request(request)
 		response = LocalIndex.as_view()(request)
+		response.render()
+		self.assertEqual(response.status_code, 200)						
+
+
+class EventoCreateTest(TestCase):
+
+	nome_usuario = 'zaca'
+	senha = 'nosferatu'
+
+	def setUp(self):
+		self.user = get_user_model().objects.create_user(self.nome_usuario, password=self.senha)
+		self.user.is_staff = True
+		self.user.save()
+		self.factory = RequestFactory()
+
+	def setup_request(self, request):
+		request.user = self.user
+
+		middleware = SessionMiddleware()
+		middleware.process_request(request)
+		request.session.save()
+
+		middleware = MessageMiddleware()
+		middleware.process_request(request)
+		request.session.save()		
+
+	def test_dummy(self):
+		self.assertEqual(1,1)				
+
+	def test_view_ok(self):
+		request = self.factory.get('/calendario/evento/novo/')
+		self.setup_request(request)
+		response = EventoIndex.as_view()(request)
 		response.render()
 		self.assertEqual(response.status_code, 200)						
