@@ -15,7 +15,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from autentica.util.mixin import CMCLoginRequired, CMCAdminLoginRequired
 from .models import Evento, Local
-from .forms import LocalForm
+from .forms import LocalForm, EventoForm
 
 
 @method_decorator(xframe_options_sameorigin, name='dispatch')
@@ -28,6 +28,9 @@ class CalendarioEventoDetails(SuccessMessageMixin, DetailView):
 
 class LocalIndex(CMCLoginRequired, SuccessMessageMixin, TemplateView):
     template_name = 'calendario/local/index.html'	
+
+class EventoIndex(CMCLoginRequired, SuccessMessageMixin, TemplateView):
+    template_name = 'calendario/evento/index.html'
 
 #--------------------------------------------------------------------------------------
 #
@@ -48,3 +51,13 @@ class LocalUpdate(CMCAdminLoginRequired, SuccessMessageMixin, UpdateView):
     success_url = '/calendario/local/'
     success_message = "Local alterado com sucesso"
     template_name = 'calendario/local/update.html'       
+
+#--------------------------------------------------------------------------------------
+#
+#--------------------------------------------------------------------------------------
+class EventoCreate(CreateView):
+    model = Evento
+    form_class = EventoForm
+    success_url = '/calendario/evento/'
+    success_message = "Evento criado com sucesso"
+    template_name = 'calendario/evento/create.html'       

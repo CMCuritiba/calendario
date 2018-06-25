@@ -84,6 +84,7 @@ class JSONCalendarioTest(TestCase):
 		data = json.loads(response.content.decode('utf-8'))
 		self.assertEqual('event-important', data['result'][0]['class'])
 
+
 class JSONLocalTest(TestCase):
 	def setup(self):
 		self.factory = APIRequestFactory()
