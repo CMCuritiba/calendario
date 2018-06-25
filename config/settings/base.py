@@ -350,6 +350,7 @@ BOWER_INSTALLED_APPS = (
     'datatables-bootstrap3',
     'bootstrap-3-datepicker',
     'bootstrap-datepicker',
+    'eonasdan-bootstrap-datetimepicker#latest',
     #'vue',
     #'vue-strap',
     'fontawesome',
