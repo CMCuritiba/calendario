@@ -7,6 +7,9 @@ from django.contrib.messages.middleware import MessageMiddleware
 from autentica.models import User
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 264607f53d869df49c27faee00f73d7adcaddb60
 from ..views import CalendarioIndex, CalendarioEventoDetails, LocalIndex, LocalCreate, LocalUpdate, EventoIndex, EventoUpdate
 from ..factories import EventoFactory, LocalFactory
 =======
@@ -158,19 +161,31 @@ class LocalUpdateTest(TestCase):
 <<<<<<< HEAD
 		self.assertEqual(response.status_code, 200)								
 		self.assertEqual(response.template_name[0], 'calendario/local/update.html')
+<<<<<<< HEAD
 =======
 		self.assertEqual(response.status_code, 200)						
 
 class EventoUpdateTest(TestCase):
+=======
+
+class EventoIndexTest(TestCase):
+	
+>>>>>>> 264607f53d869df49c27faee00f73d7adcaddb60
 	nome_usuario = 'zaca'
 	senha = 'nosferatu'
 
 	def setUp(self):
 		self.user = get_user_model().objects.create_user(self.nome_usuario, password=self.senha)
 		self.user.is_staff = True
+<<<<<<< HEAD
 		self.user.is_superuser = True
 		self.user.save()
 		self.factory = RequestFactory()
+=======
+		self.user.save()
+		self.factory = RequestFactory()
+		evento = EventoFactory.create()
+>>>>>>> 264607f53d869df49c27faee00f73d7adcaddb60
 
 	def setup_request(self, request):
 		request.user = self.user
@@ -181,6 +196,7 @@ class EventoUpdateTest(TestCase):
 
 		middleware = MessageMiddleware()
 		middleware.process_request(request)
+<<<<<<< HEAD
 		request.session.save()		
 
 	def test_dummy(self):
@@ -199,12 +215,32 @@ class EventoUpdateTest(TestCase):
 
 class EventoCreateTest(TestCase):
 
+=======
+		request.session.save()
+
+	def test_dummy(self):
+		self.assertEqual(1,1)		
+
+	def test_view_ok(self):
+		request = self.factory.get('/calendario/evento/')
+		self.setup_request(request)
+		response = EventoIndex.as_view()(request)
+		response.render()
+		self.assertEqual(response.status_code, 200)						
+		self.assertEqual(response.template_name[0], 'calendario/evento/index.html')
+
+class EventoUpdateTest(TestCase):
+>>>>>>> 264607f53d869df49c27faee00f73d7adcaddb60
 	nome_usuario = 'zaca'
 	senha = 'nosferatu'
 
 	def setUp(self):
 		self.user = get_user_model().objects.create_user(self.nome_usuario, password=self.senha)
 		self.user.is_staff = True
+<<<<<<< HEAD
+=======
+		self.user.is_superuser = True
+>>>>>>> 264607f53d869df49c27faee00f73d7adcaddb60
 		self.user.save()
 		self.factory = RequestFactory()
 
@@ -223,9 +259,20 @@ class EventoCreateTest(TestCase):
 		self.assertEqual(1,1)				
 
 	def test_view_ok(self):
+<<<<<<< HEAD
 		request = self.factory.get('/calendario/evento/novo/')
 		self.setup_request(request)
 		response = EventoIndex.as_view()(request)
 		response.render()
 		self.assertEqual(response.status_code, 200)						
 >>>>>>> issue31
+=======
+		request = self.factory.get('/calendario/evento/altera/')
+		self.setup_request(request)
+		request.user = self.user
+		evento = EventoFactory.create()
+		response = EventoUpdate.as_view()(request, pk=1)
+		response.render()
+		self.assertEqual(response.status_code, 200)								
+		self.assertEqual(response.template_name[0], 'calendario/evento/update.html')		
+>>>>>>> 264607f53d869df49c27faee00f73d7adcaddb60

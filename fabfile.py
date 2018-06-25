@@ -65,9 +65,9 @@ def chown():
 
 def des_chown():
 	''' Seta permissões ao usuário/grupo corretos '''
-	sudo('chown -R {} {}'.format(env.user, PROJECT_ROOT))
-	sudo('chown -R {} {}'.format(env.user, ENVS))
-	sudo('chown -R {} {}'.format(env.user, HTML + '/' + PROJECT_NAME))	
+	sudo('chown -R {}:{} {}'.format(env.user, env.user, PROJECT_ROOT))
+	sudo('chown -R {}:{} {}'.format(env.user, env.user, ENVS))
+	sudo('chown -R {}:{} {}'.format(env.user, env.user, HTML + '/' + PROJECT_NAME))	
 
 def cria_webapps():
 	sudo('mkdir -p {}'.format(WEBAPPS))
@@ -81,6 +81,8 @@ def cria_envs():
 def cria_html():
 	sudo('mkdir -p {}'.format(HTML + '/' + PROJECT_NAME))
 	sudo('mkdir -p {}'.format(HTML + '/' + PROJECT_NAME + '/logs'))
+	sudo('mkdir -p {}'.format(HTML + '/' + PROJECT_NAME + '/static'))
+	sudo('mkdir -p {}'.format(HTML + '/' + PROJECT_NAME + '/media'))
 	#sudo('chown -R {}:{} {}'.format(USERAPP, env.wwwdata, HTML + '/' + PROJECT_NAME))	
 
 def restart():
@@ -195,16 +197,17 @@ def manage_bower():
 	with cd(PROJECT_ROOT):
 		with source_virtualenv():
 			# Roda o bower install
-			run('./manage.py bower_install --settings=config.settings.production')
+			run('python manage.py bower_install --settings=config.settings.production')
 	chown()
 
 @task
 def manage_collectstatic():
-	chown()
+	des_chown()
 	with cd(PROJECT_ROOT):
 		with source_virtualenv():
 			# Gera todos os arquivos css/js
-			sudo('./manage.py collectstatic --noinput --settings=config.settings.production', user=USERAPP)
+			run('python manage.py collectstatic --noinput --settings=config.settings.production')
+	chown()			
 
 @task
 def git_update():
@@ -226,7 +229,6 @@ def cria_links():
 	if env.environment == 'staging' or env.environment == 'production':
 		sudo('ln -sf {}/deploy/{}/supervisor.conf /etc/supervisor/conf.d/calendario.conf'.format(PROJECT_ROOT,env.environment))
 		sudo('ln -sf {}/deploy/{}/nginx.conf /etc/nginx/sites-enabled/calendario'.format(PROJECT_ROOT,env.environment))
-		sudo('chmod a+x {}/deploy/{}/bootstrap.sh'.format(PROJECT_ROOT,env.environment))
 		sudo('chmod a+x {}/deploy/{}/run.sh'.format(PROJECT_ROOT,env.environment))
 	else:
 		print('Nenhum ambiente selecionado. Defina staging ou production.')
@@ -243,10 +245,21 @@ def manage_makemigrations():
 	with cd(PROJECT_ROOT):
 		with source_virtualenv():
 			# Roda o bower install
-			run('./manage.py makemigrations --settings=config.settings.production')
+			run('python manage.py makemigrations --settings=config.settings.production')
 			#run('./manage.py makemigrations autentica --settings=config.settings.production')
 			#run('./manage.py makemigrations cadastro --settings=config.settings.production')
 	chown()	
+
+@task
+def manage_makemigrations_calendario():
+	des_chown()
+	with cd(PROJECT_ROOT):
+		with source_virtualenv():
+			# Roda o bower install
+			run('python manage.py makemigrations calendario --settings=config.settings.production')
+			#run('./manage.py makemigrations autentica --settings=config.settings.production')
+			#run('./manage.py makemigrations cadastro --settings=config.settings.production')
+	chown()		
 
 @task
 def manage_migrate():
@@ -254,7 +267,7 @@ def manage_migrate():
 	with cd(PROJECT_ROOT):
 		with source_virtualenv():
 			# Roda o bower install
-			run('./manage.py migrate --settings=config.settings.production')
+			run('python manage.py migrate --settings=config.settings.production')
 			#run('./manage.py migrate autentica --settings=config.settings.production')
 			#run('./manage.py migrate cadastro --settings=config.settings.production')
 	chown()		

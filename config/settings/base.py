@@ -3,6 +3,9 @@ from __future__ import absolute_import, unicode_literals
 
 import environ, os
 
+def gettext_noop(s):
+    return s
+
 ROOT_DIR = environ.Path(__file__) - 3
 APPS_DIR = ROOT_DIR.path('calendario')
 
@@ -81,6 +84,10 @@ MIDDLEWARE = [
 
 AUTH_USER_MODEL = 'autentica.User'
 
+# SERVIDOR DE MICRO SERVICOS
+# ------------------------------------------------------------------------------
+MSCMC_SERVER = env('MSCMC_SERVER')
+
 # DEBUG
 # ------------------------------------------------------------------------------
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#debug
@@ -128,6 +135,10 @@ TIME_ZONE = 'America/Sao_Paulo'
 #USE_TZ=True
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#language-code
 LANGUAGE_CODE = 'pt-BR'
+
+LANGUAGES = [
+    ('pt-br', gettext_noop('Brazilian Portuguese')),
+]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#site-id
 SITE_ID = 1
@@ -292,6 +303,7 @@ PIPELINE = {
             'source_filenames': (
               'bootstrap/dist/css/bootstrap.css',
               'bootstrap-calendar/css/calendar.min.css',
+              'bootstrap-datepicker/dist/css/bootstrap-datepicker3.css',
               'datatables/media/css/jquery.dataTables.css',
               'datatables/media/css/dataTables.bootstrap.css',
               'datatables.net-responsive-bs/css/responsive.bootstrap.min.css',
@@ -308,6 +320,8 @@ PIPELINE = {
               'underscore/underscore-min.js',
               'bootstrap-calendar/js/language/pt-BR.js',
               'bootstrap-calendar/js/calendar.min.js',
+              'bootstrap-datepicker/dist/js/bootstrap-datepicker.js',
+              'bootstrap-datepicker/dist/locales/bootstrap-datepicker.pt-BR.min.js',
               'fontawesome/svg-with-js/js/fontawesome-all.min.js',
               'datatables/media/js/jquery.dataTables.js',
               'datatables/media/js/dataTables.bootstrap.js',
@@ -334,6 +348,8 @@ BOWER_INSTALLED_APPS = (
     #'jasny-bootstrap',
     'datatables',
     'datatables-bootstrap3',
+    'bootstrap-3-datepicker',
+    'bootstrap-datepicker',
     #'vue',
     #'vue-strap',
     'fontawesome',
@@ -371,7 +387,15 @@ X_FRAME_OPTIONS = 'SAMEORIGIN'
 TINYMCE_SPELLCHECKER = True
 TINYMCE_COMPRESSOR = True
 TINYMCE_DEFAULT_CONFIG = {
-    'theme': "advanced",
-    'plugins': "spellchecker",
-    'theme_advanced_buttons3_add': "|,spellchecker",
+    'selector': 'textarea',
+    'theme': 'modern',
+    'plugins': 'link image preview codesample contextmenu table code lists',
+    'toolbar1': 'formatselect | bold italic underline | alignleft aligncenter alignright alignjustify '
+               '| bullist numlist | outdent indent | table | link image | codesample | preview code',
+    'contextmenu': 'formats | link image',
+    'menubar': False,
+    'inline': False,
+    'statusbar': True,
+    'width': 'auto',
+    'height': 360,
 }

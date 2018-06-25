@@ -26,3 +26,4 @@ class EventoFactory(DjangoModelFactory):
 	local = SubFactory(LocalFactory)
 	pessoa = 6543
 	setor = 171
+	status = 'A'
