@@ -11,4 +11,5 @@ urlpatterns = [
 	path('local/altera/<int:pk>/', views.LocalUpdate.as_view(), name='local-altera'),
 	path('evento/', views.EventoIndex.as_view(), name='evento-index'),
 	path('evento/altera/<int:pk>/', views.EventoUpdate.as_view(), name='evento-altera'),
+	path('evento/novo/', views.EventoCreate.as_view(), name='evento-novo'),
 ]	

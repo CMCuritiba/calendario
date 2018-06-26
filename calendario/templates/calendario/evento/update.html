@@ -36,6 +36,20 @@
             location.href = '/calendario/evento/';
         }
 
+        $(function () {
+            $('#id_inicio').datetimepicker({
+                 locale: 'br',
+                 sideBySide: true,
+                 icons: {
+                    date: 'fas fa-calendar-alt',
+                 }
+            });
+            $('#id_fim').datetimepicker({
+                 locale: 'br',
+                 sideBySide: true,
+            });
+        });
+
     </script>
 
 {% endblock %}        

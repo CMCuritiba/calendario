@@ -4,8 +4,7 @@ from factory.django import DjangoModelFactory
 from factory import SubFactory
 from datetime import datetime
 
-from .models import Local
-from .models import Evento
+from .models import Local, Evento
 
 class LocalFactory(DjangoModelFactory):
 	class Meta:

@@ -39,6 +39,12 @@ class LocalIndex(CMCLoginRequired, SuccessMessageMixin, TemplateView):
 #--------------------------------------------------------------------------------------
 #
 #--------------------------------------------------------------------------------------
+class EventoIndex(CMCLoginRequired, SuccessMessageMixin, TemplateView):
+    template_name = 'calendario/evento/index.html'
+
+#--------------------------------------------------------------------------------------
+#
+#--------------------------------------------------------------------------------------
 class LocalCreate(CMCAdminLoginRequired, SuccessMessageMixin, CreateView):
     model = Local
     form_class = LocalForm
@@ -59,18 +65,29 @@ class LocalUpdate(CMCAdminLoginRequired, SuccessMessageMixin, UpdateView):
 #--------------------------------------------------------------------------------------
 #
 #--------------------------------------------------------------------------------------
-class EventoIndex(CMCLoginRequired, SuccessMessageMixin, TemplateView):
-    template_name = 'calendario/evento/index.html'       
-
-#--------------------------------------------------------------------------------------
-#
-#--------------------------------------------------------------------------------------
 class EventoUpdate(CMCAdminLoginRequired, SuccessMessageMixin, UpdateView):
     model = Evento
     form_class = EventoForm
     success_url = '/calendario/evento/'
     success_message = "Evento alterado com sucesso"
     template_name = 'calendario/evento/update.html'           
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.setor = self.request.session['setor_id']
+        obj.pessoa = self.request.session['pessoa_pessoa']
+        obj.save()
+        return super(EventoUpdate, self).form_valid(form)
+
+#--------------------------------------------------------------------------------------
+#
+#--------------------------------------------------------------------------------------
+class EventoCreate(CMCAdminLoginRequired, SuccessMessageMixin, CreateView):
+    model = Evento
+    form_class = EventoForm
+    success_url = '/calendario/evento/'
+    success_message = "Evento criado com sucesso"
+    template_name = 'calendario/evento/create.html'           
 
     def form_valid(self, form):
         obj = form.save(commit=False)
