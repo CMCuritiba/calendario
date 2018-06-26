@@ -20,8 +20,6 @@ from django.contrib.sessions.backends.db import SessionStore
 
 from calendario.calendario.models import Evento, Local
 
-from bootstrap3_datetime.widgets import DateTimePicker
-
 #------------------------------------------------------------------------------------------
 # classe form utilizada para validar JSON de alteração de status dos locais
 #------------------------------------------------------------------------------------------
@@ -84,8 +82,8 @@ class EventoForm(forms.ModelForm):
 		self.fields['classe'].empty_label = "Selecione..."
 		self.fields['status'].empty_label = "Selecione..."
 
-		inicio = forms.DateTimeField(required=True,widget=DateTimePicker(options={"format": "YYYY-MM-DD HH:mm"}))
-		fim = forms.DateTimeField(required=True,widget=DateTimePicker(options={"format": "YYYY-MM-DD HH:mm"}))
+		inicio = forms.DateTimeField(required=True)
+		fim = forms.DateTimeField(required=True)
 
 		'''
 		self.helper.layout = Layout(
