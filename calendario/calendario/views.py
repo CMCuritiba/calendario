@@ -39,6 +39,12 @@ class LocalIndex(CMCLoginRequired, SuccessMessageMixin, TemplateView):
 #--------------------------------------------------------------------------------------
 #
 #--------------------------------------------------------------------------------------
+class EventoIndex(CMCLoginRequired, SuccessMessageMixin, TemplateView):
+    template_name = 'calendario/evento/index.html'
+
+#--------------------------------------------------------------------------------------
+#
+#--------------------------------------------------------------------------------------
 class LocalCreate(CMCAdminLoginRequired, SuccessMessageMixin, CreateView):
     model = Local
     form_class = LocalForm
@@ -55,12 +61,6 @@ class LocalUpdate(CMCAdminLoginRequired, SuccessMessageMixin, UpdateView):
     success_url = '/calendario/local/'
     success_message = "Local alterado com sucesso"
     template_name = 'calendario/local/update.html'       
-
-#--------------------------------------------------------------------------------------
-#
-#--------------------------------------------------------------------------------------
-class EventoIndex(CMCLoginRequired, SuccessMessageMixin, TemplateView):
-    template_name = 'calendario/evento/index.html'       
 
 #--------------------------------------------------------------------------------------
 #

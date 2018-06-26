@@ -28,6 +28,7 @@ class CalendarioIndexTest(TestCase):
 		response = CalendarioIndex.as_view()(request)
 		response.render()
 		self.assertEqual(response.status_code, 200)
+		self.assertEqual(response.template_name[0], 'calendario/index.html')
 
 class CalendarioEventoDetailsTest(TestCase):
 	
@@ -160,6 +161,7 @@ class EventoIndexTest(TestCase):
 	def setUp(self):
 		self.user = get_user_model().objects.create_user(self.nome_usuario, password=self.senha)
 		self.user.is_staff = True
+		self.user.is_superuser = True
 		self.user.save()
 		self.factory = RequestFactory()
 		evento = EventoFactory.create()
@@ -173,11 +175,45 @@ class EventoIndexTest(TestCase):
 
 		middleware = MessageMiddleware()
 		middleware.process_request(request)
-		request.session.save()
+		request.session.save()		
 
 	def test_dummy(self):
-		self.assertEqual(1,1)		
+		self.assertEqual(1,1)				
 
+	def test_view_ok(self):
+		request = self.factory.get('/calendario/evento/')
+		self.setup_request(request)
+		request.user = self.user
+		response = EventoIndex.as_view()(request, pk=1)
+		response.render()
+		self.assertEqual(response.status_code, 200)								
+		self.assertEqual(response.template_name[0], 'calendario/evento/index.html')
+
+
+class EventoCreateTest(TestCase):
+
+	nome_usuario = 'zaca'
+	senha = 'nosferatu'
+
+	def setUp(self):
+		self.user = get_user_model().objects.create_user(self.nome_usuario, password=self.senha)
+		self.user.is_staff = True
+		self.user.is_superuser = True
+		self.user.save()
+		self.factory = RequestFactory()
+		evento = EventoFactory.create()
+
+	def setup_request(self, request):
+		request.user = self.user
+
+		middleware = SessionMiddleware()
+		middleware.process_request(request)
+		request.session.save()
+
+		middleware = MessageMiddleware()
+		middleware.process_request(request)
+		request.session.save()		
+	
 	def test_view_ok(self):
 		request = self.factory.get('/calendario/evento/')
 		self.setup_request(request)

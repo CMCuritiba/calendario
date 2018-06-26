@@ -307,6 +307,7 @@ PIPELINE = {
               'datatables/media/css/jquery.dataTables.css',
               'datatables/media/css/dataTables.bootstrap.css',
               'datatables.net-responsive-bs/css/responsive.bootstrap.min.css',
+              'eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css',
               'callout.css',
             ),
             'output_filename': 'css/master.css',
@@ -316,6 +317,8 @@ PIPELINE = {
         'master': {
             'source_filenames': (
               'jquery/jquery.js',
+              'moment/min/moment.min.js',
+              'moment/locale/pt-br.js',
               'bootstrap/dist/js/bootstrap.min.js',
               'underscore/underscore-min.js',
               'bootstrap-calendar/js/language/pt-BR.js',
@@ -327,13 +330,15 @@ PIPELINE = {
               'datatables/media/js/dataTables.bootstrap.js',
               'datatables.net-responsive/js/dataTables.responsive.min.js',
               'datatables.net-responsive-bs/js/responsive.bootstrap.min.js',
+              'eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js',
             ),
             'output_filename': 'js/master.js',
         }
     }
 }
 
-STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
+#STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
+STATICFILES_STORAGE = 'django_pipeline_forgiving.storages.PipelineForgivingStorage'
 
 # BOWER
 # ------------------------------------------------------------------------------
@@ -354,6 +359,7 @@ BOWER_INSTALLED_APPS = (
     #'vue',
     #'vue-strap',
     'fontawesome',
+    'moment',
     #'bootstrap-select'
 )
 

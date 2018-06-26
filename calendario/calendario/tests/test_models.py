@@ -6,8 +6,7 @@ from django.urls import reverse
 from django.contrib.auth import get_user_model
 from datetime import datetime
 
-from ..factories import LocalFactory
-from ..factories import EventoFactory
+from ..factories import LocalFactory, EventoFactory
 
 from ..models import Local
 
