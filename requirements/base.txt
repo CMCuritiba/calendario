@@ -53,3 +53,5 @@ django-redis==4.7.0
 redis>=2.10.5
 
 django-pipeline-forgiving==1.0.0
+
+django-bootstrap3-datetimepicker-2==2.6.0
