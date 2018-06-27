@@ -30,8 +30,10 @@ class Local(models.Model):
 	def __unicode__(self):
 		return self.local
 
+
 	def __str__(self):
-		return self.local		
+		return self.local
+
     
 #---------------------------------------------------------------------------------------------
 # Model Evento

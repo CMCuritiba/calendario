@@ -16,7 +16,6 @@ class LocalFactory(DjangoModelFactory):
 class EventoFactory(DjangoModelFactory):
 	class Meta:
 		model = Evento
-
 	id = 1
 	evento = 'Palestra Sobre Ponto Biométrico'
 	url = '/calendario/evento/detalhe/1'
@@ -26,4 +25,3 @@ class EventoFactory(DjangoModelFactory):
 	local = SubFactory(LocalFactory)
 	pessoa = 6543
 	setor = 171
-	status = 'A'

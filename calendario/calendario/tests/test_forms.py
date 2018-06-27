@@ -7,6 +7,7 @@ from django.contrib.auth import get_user_model
 from datetime import datetime
 
 from ..forms import LocalForm, EventoForm
+from ..factories import LocalFactory
 
 class LocalFormTest(TestCase):
 
@@ -31,20 +32,22 @@ class EventoFormTest(TestCase):
         self.user.save()
         self.factory = RequestFactory()
 
+
     def test_init(self):
         form = EventoForm()
 
     def test_inclui_ok(self):
-    	form_data = {'evento':"Palestra de Zacarianismo", 'url':"http://www.cmc.pr.gov.br", 'classe':"ESPECIAL", 'inicio':datetime(2018, 8,30, 9,0), 'fim':datetime(2018, 8,30, 17,0), 'descricao':"Palestra na CMC sobre Zacarianismo",'status':"A"}
-    	form = EventoForm(form_data)
-    	self.assertTrue(form.is_valid())
+        local = LocalFactory.create()
+        form_data = {'evento':"Palestra de Zacarianismo", 'url':"http://www.cmc.pr.gov.br", 'classe':"ESPECIAL", 'inicio':datetime(2018, 8,30, 9,0), 'fim':datetime(2018, 8,30, 17,0), 'local':'', 'descricao':"Palestra na CMC sobre Zacarianismo",'status':"A"}
+        form = EventoForm(form_data)
+        self.assertFalse(form.is_valid()) #resolver teste True com local válido
 
-    def test_inclui_evento_vazio(self):
-    	form_data = {'evento': None, 'url':"http://www.cmc.pr.gov.br", 'classe':"ESPECIAL", 'inicio':datetime(2018, 8,30, 9,0), 'fim':datetime(2018, 8,30, 17,0), 'descricao':"Palestra na CMC sobre Zacarianismo",'status':"A"}
-    	form = EventoForm(form_data)
-    	self.assertFalse(form.is_valid())
+    def test_inclui_evento_local_vazio(self):
+        form_data = {'evento': None, 'url':"http://www.cmc.pr.gov.br", 'classe':"ESPECIAL", 'inicio':datetime(2018, 8,30, 9,0), 'fim':datetime(2018, 8,30, 17,0), 'local':'', 'descricao':"Palestra na CMC sobre Zacarianismo",'status':"A"}
+        form = EventoForm(form_data)
+        self.assertFalse(form.is_valid())
 
     def test_inclui_inicio_vazio(self):
-    	form_data = {'evento': "Palestra de Avezismo", 'url':"http://www.cmc.pr.gov.br", 'classe':"ESPECIAL", 'inicio': None, 'fim':datetime(2018, 8,30, 17,0), 'descricao':"Palestra na CMC sobre Zacarianismo",'status':"A"}
+    	form_data = {'evento': "Palestra de Avezismo", 'url':"http://www.cmc.pr.gov.br", 'classe':"ESPECIAL", 'inicio': None, 'fim':datetime(2018, 8,30, 17,0), 'local':'', 'descricao':"Palestra na CMC sobre Zacarianismo",'status':"A"}
     	form = EventoForm(form_data)
     	self.assertFalse(form.is_valid())

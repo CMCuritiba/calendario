@@ -5,17 +5,10 @@
 
 {% block content %}
 
-<<<<<<< HEAD
     <div class="panel panel-info">
         <div class="panel-heading">Opções de Filtro</div>
         <div class="panel-body">
             <div class="row">
-=======
-	<div class="panel panel-info">
-        <div class="panel-heading">Opções de Filtro</div>
-        <div class="panel-body">
-        	<div class="row">
->>>>>>> 264607f53d869df49c27faee00f73d7adcaddb60
                 <div class="col-sm-6">
                     <input type="checkbox" id="id_filtro_usuario" name="id_filtro_usuario" data-live-search="true" data-width="50%">
                     <label for "id_filtro_usuario">Apenas eventos cadastrados pelo usuário</label>
@@ -45,13 +38,8 @@
                     </div>
                 </div>
             </div>
-<<<<<<< HEAD
         </div>           
     </div>           
-=======
-		</div>           
-	</div>           
->>>>>>> 264607f53d869df49c27faee00f73d7adcaddb60
 
     <div class="panel panel-primary">
         <div class="panel-heading">Eventos</div>
@@ -108,56 +96,28 @@
 {% block extra_javascript %}
 
     <script>
-<<<<<<< HEAD
         var tableEventos;
         $(document).ready(function() {
-=======
-
-        var tableEventos;
-
-        $(document).ready(function() {
-
->>>>>>> 264607f53d869df49c27faee00f73d7adcaddb60
             $('#datetimepicker1').datepicker({
                 format: "dd/mm/yyyy",
                 language: "pt-BR",
                 todayHighlight: true,
-<<<<<<< HEAD
                 clearBtn: true,
                 autoclose: true,
                 orientation: "bottom left",
             });
-=======
-                clearBtn: false,
-                autoclose: true,
-                orientation: "bottom left",
-            });
-
->>>>>>> 264607f53d869df49c27faee00f73d7adcaddb60
             $('#datetimepicker2').datepicker({
                 format: "dd/mm/yyyy",
                 language: "pt-BR",
                 todayHighlight: true,
-<<<<<<< HEAD
                 clearBtn: true,
                 autoclose: true,
                 orientation: "bottom left",
             });
-=======
-                clearBtn: false,
-                autoclose: true,
-                orientation: "bottom left",
-            });
-
->>>>>>> 264607f53d869df49c27faee00f73d7adcaddb60
             $("button#submit").click(function() {
                 exclui();
                 $("#confirmaModal").modal('hide');
             })
-<<<<<<< HEAD
-=======
-
->>>>>>> 264607f53d869df49c27faee00f73d7adcaddb60
             tableEventos = $('#teventos').DataTable({
                 responsive: true,
                 "order": [[ 2, "asc" ]],
@@ -198,10 +158,6 @@
                         title: "pessoa" ,
                         data: 'pessoa'
                     },
-<<<<<<< HEAD
-=======
-
->>>>>>> 264607f53d869df49c27faee00f73d7adcaddb60
                     
                 ],
                 "columnDefs": [
@@ -242,7 +198,6 @@
                         "className": "dt-center",
                         "data": null,
                         render: function(data, type, full, meta) {
-<<<<<<< HEAD
                             if (full.status == 'ATIVO') {
                                 return '<a href="" data-toggle="modal" data-target="#confirmaModal" data-evento_id="' + full.id + '" data-evento_evento="' + full.evento + '" data-evento_inicio="' + full.inicio + '" data-evento_fim="' + full.fim + '"><i class="far fa-trash-alt" aria-hidden="true" style="color:Tomato;" title="Exclui Evento"></i></a>';
                             }
@@ -251,17 +206,6 @@
                             }
                         }
                 }
-=======
-                        	if (full.status == 'ATIVO') {
-                            	return '<a href="" data-toggle="modal" data-target="#confirmaModal" data-evento_id="' + full.id + '" data-evento_evento="' + full.evento + '" data-evento_inicio="' + full.inicio + '" data-evento_fim="' + full.fim + '"><i class="far fa-trash-alt" aria-hidden="true" style="color:Tomato;" title="Exclui Evento"></i></a>';
-                            }
-                            else {
-                            	return '';
-                            }
-                        }
-                }
-
->>>>>>> 264607f53d869df49c27faee00f73d7adcaddb60
                 ],
                 "language": {
                     "info": "Páginas _PAGE_ de _PAGES_",
@@ -286,15 +230,8 @@
                 },
                 "sDom": '<"top"i>rt<"bottom"lp><"clear">',
             });
-<<<<<<< HEAD
             $.fn.dataTableExt.afnFiltering.push(
                 function( oSettings, aData, iDataIndex ) {
-=======
-
-            $.fn.dataTableExt.afnFiltering.push(
-                function( oSettings, aData, iDataIndex ) {
-
->>>>>>> 264607f53d869df49c27faee00f73d7adcaddb60
                     var today = new Date();
                     var dd = today.getDate();
                     var mm = today.getMonth() + 1;
@@ -308,10 +245,7 @@
                     
                     today = dd+'/'+mm+'/'+yyyy;
                     
-<<<<<<< HEAD
                     if ($('#id_filtro_data_inicio').val() != '' || $('#id_filtro_data_fim').val() != '') {
-=======
->>>>>>> 264607f53d869df49c27faee00f73d7adcaddb60
                     var iMin_temp = $('#id_filtro_data_inicio').val();
                     if (iMin_temp == '') {
                       iMin_temp = '01/01/1980';
@@ -319,27 +253,15 @@
                     
                     var iMax_temp = $('#id_filtro_data_fim').val();
                     if (iMax_temp == '') {
-<<<<<<< HEAD
                       iMax_temp = today;
-=======
-                      iMax_temp = '01/01/2099';
->>>>>>> 264607f53d869df49c27faee00f73d7adcaddb60
                     }
                     
                     var arr_min = iMin_temp.split("/");
                     var arr_max = iMax_temp.split("/");
                     var arr_date = aData[2].split("/");
-<<<<<<< HEAD
                     var iMin = new Date(arr_min[2], arr_min[1], arr_min[0], 0, 0, 0, 0)
                     var iMax = new Date(arr_max[2], arr_max[1], arr_max[0], 0, 0, 0, 0)
                     var iDate = new Date(arr_date[2], arr_date[1], arr_date[0], 0, 0, 0, 0)
-=======
-
-                    var iMin = new Date(arr_min[2], arr_min[1], arr_min[0], 0, 0, 0, 0)
-                    var iMax = new Date(arr_max[2], arr_max[1], arr_max[0], 0, 0, 0, 0)
-                    var iDate = new Date(arr_date[2], arr_date[1], arr_date[0], 0, 0, 0, 0)
-
->>>>>>> 264607f53d869df49c27faee00f73d7adcaddb60
                     if ( iMin == "" && iMax == "" )
                     {
                         return true;
@@ -358,20 +280,10 @@
                     }
                     return false;
                     }
-<<<<<<< HEAD
                 }
             );
             tableEventos.columns(4).search('^ATIVO',true, false).draw();    
         });
-=======
-                
-            );
-
-			tableEventos.columns(4).search('^ATIVO',true, false).draw();	
-
-        });
-
->>>>>>> 264607f53d869df49c27faee00f73d7adcaddb60
         $('#confirmaModal').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget);
             var pk = button.data('evento_id');
@@ -384,23 +296,11 @@
             modal.find('#evento_inicio').html(recinicio);
             modal.find('#evento_fim').html(recfim);
         });
-<<<<<<< HEAD
         function criaEvento() {
             location.href = '/calendario/evento/novo/';
         }
         function exclui() {
             request_url = '/api/evento/exclui/';
-=======
-
-
-        function criaEvento() {
-            location.href = '/calendario/evento/novo/';
-        }
-
-        function exclui() {
-            request_url = '/api/evento/exclui/';
-
->>>>>>> 264607f53d869df49c27faee00f73d7adcaddb60
             $.ajax({
                 url: request_url,
                 type: 'POST',
@@ -409,11 +309,7 @@
                 data: $('form.exclui').serialize(),
                 success: function(result){
                     console.log($('form.exclui').serialize());
-<<<<<<< HEAD
                     tableLocais.ajax.reload(null, false);
-=======
-                    tableEventos.ajax.reload(null, false);
->>>>>>> 264607f53d869df49c27faee00f73d7adcaddb60
                 },
                 error: function(xhr, status, error) {
                     console.log(status);
@@ -422,7 +318,6 @@
                 }
             })
         }
-<<<<<<< HEAD
         $('#id_filtro_usuario').click(function() {
             var pessoa = $('#id_pessoa').val();
             if (this.checked) {
@@ -432,19 +327,6 @@
                 tableEventos.columns(5).search('',true, false).draw();    
             }
         });
-=======
-
-        $('#id_filtro_usuario').click(function() {
-            var pessoa = $('#id_pessoa').val();
-        	if (this.checked) {
-        		tableEventos.columns(5).search(pessoa,true, false).draw();	
-        	}
-        	else {
-        		tableEventos.columns(5).search('',true, false).draw();    
-        	}
-		});
-
->>>>>>> 264607f53d869df49c27faee00f73d7adcaddb60
         $('#id_filtro_ativo').click(function() {
             if (this.checked) {
                 tableEventos.columns(4).search('ATIVO',true, false).draw();  
@@ -453,7 +335,6 @@
                 tableEventos.columns(4).search('^ATIVO', true, false).draw();        
             }
         });
-<<<<<<< HEAD
         $('#id_filtro_data_inicio').change( function() { tableEventos.draw(); } );
         $('#id_filtro_data_fim').change( function() { tableEventos.draw(); } );
         function getDate() {
@@ -472,15 +353,6 @@
             return today;
         }
         $('#id_filtro_data_inicio').val(getDate());
-=======
-
-        $('#id_filtro_data_inicio').change( function() { tableEventos.draw(); } );
-
-        $('#id_filtro_data_fim').change( function() { tableEventos.draw(); } );
-
-        $('#id_filtro_data_inicio').val('');
-
->>>>>>> 264607f53d869df49c27faee00f73d7adcaddb60
     </script>
 
 {% endblock %}
