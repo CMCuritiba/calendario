@@ -309,6 +309,7 @@ PIPELINE = {
               'datatables.net-responsive-bs/css/responsive.bootstrap.min.css',
               'eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css',
               'callout.css',
+              'event.css',
             ),
             'output_filename': 'css/master.css',
         },
