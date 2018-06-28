@@ -6,6 +6,7 @@
 {% block content %}
 
 	<br/>
+  <!--
   <div class="panel-body">
     <div class="list-group">
       <a href="#" class="list-group-item active">
@@ -27,7 +28,27 @@
         <p class="list-group-item-heading">{{evento.local.local}}</p>
       </a>
     </div>
-
+  </div>
+-->
+  <div class="row">
+    <div class="col-md-12">
+      <div class="evento">
+        <div class="data">
+          <div class="dia">{{evento.inicio|date:'d'}}</div>
+          <div class="mes">{{evento.inicio|date:'F'}}</div>
+        </div>
+        <div class="info">
+          <div class="titulo"><i class="fas fa-calendar fa-lg fa-pull-left"></i>&nbsp;{{evento.evento}}</div>
+          <div class="inicio"><i class="fas fa-clock fa-lg fa-pull-left"></i>&nbsp;<b>Início :</b> {{evento.inicio}}</div>
+          <div class="inicio"><i class="fas fa-clock fa-lg fa-pull-left"></i>&nbsp;<b>Fim :</b> {{evento.fim}}</div>
+          <div class="local"><i class="fas fa-map-marker-alt fa-lg"></i>&nbsp;<b>Local :</b> {{evento.local.local}}</div>
+        </div>
+        <div class="texto">
+          <div class="conteudo">{{evento.descricao|safe}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}
 
 
