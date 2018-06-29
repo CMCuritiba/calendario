@@ -174,3 +174,26 @@ def call_evento_exclui(request):
 				evento.save()
 				response = JsonResponse({'status':'true','message':'Evento alterado com sucesso'}, status=200)
 	return response		
+
+# -----------------------------------------------------------------------------------
+# retorna eventos para popular calendário full
+# -----------------------------------------------------------------------------------
+def get_calendario_full(request):
+	entradas = Evento.objects.filter(status='A')
+
+	entradas_json = []
+	for c in entradas:
+		e_json = {}
+		e_json['id'] = str(c.id)
+		e_json['start'] = c.inicio
+		e_json['end'] = c.fim
+		e_json['url'] = gera_url(c.id)
+		e_json['title'] = c.evento
+		#e_json['setor'] = c.setor
+		#e_json['pessoa'] = c.pessoa
+		#e_json['eventColor'] = gera_class(c.classe)
+		e_json['color'] = gera_class(c.classe)
+		entradas_json.append(e_json)
+
+
+	return JsonResponse(entradas_json, safe=False)	

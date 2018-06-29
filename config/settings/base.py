@@ -333,9 +333,9 @@ PIPELINE = {
               'datatables.net-responsive/js/dataTables.responsive.min.js',
               'datatables.net-responsive-bs/js/responsive.bootstrap.min.js',
               'eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js',
-              'fullcalendar/dist/fullcalendar/fullcalendar.min.js',
-              'fullcalendar/dist/fullcalendar/gcal.min.js',
-              'fullcalendar/dist/fullcalendar/locale-all.min.js',
+              'fullcalendar/dist/fullcalendar.min.js',
+              'fullcalendar/dist/gcal.min.js',
+              'fullcalendar/dist/locale-all.min.js',
             ),
             'output_filename': 'js/master.js',
         }

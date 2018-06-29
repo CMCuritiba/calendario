@@ -95,3 +95,9 @@ class EventoUpdate(CMCAdminLoginRequired, SuccessMessageMixin, UpdateView):
         obj.pessoa = self.request.session['pessoa_pessoa']
         obj.save()
         return super(EventoUpdate, self).form_valid(form)
+
+#--------------------------------------------------------------------------------------
+#
+#--------------------------------------------------------------------------------------
+class FullCalendarioIndex(SuccessMessageMixin, TemplateView):
+    template_name = 'calendario/index_full.html'        
