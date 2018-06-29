@@ -5,14 +5,14 @@
 
 {% block content %}
 
-	<div class="panel panel-primary">
-		<div class="panel-heading">Serviços</div>
+    <div class="panel panel-primary">
+        <div class="panel-heading">Serviços</div>
         <div class="panel-body">
-        	<form name="formulario" id="formulario" method="post" action="">
+            <form name="formulario" id="formulario" method="post" action="">
                 {% crispy form %}
             </form>
         </div>
-	</div>
+    </div>
     <div class="panel panel-primary">
         <div class="panel-body">
             <div class="col-md-12 row">
@@ -33,6 +33,19 @@
         function voltar() {
             location.href = '/calendario/evento/';
         }
+        $(function () {
+            $('#id_inicio').datetimepicker({
+                 locale: 'br',
+                 sideBySide: true,
+                 icons: {
+                    date: 'fas fa-calendar-alt',
+                 }
+            });
+            $('#id_fim').datetimepicker({
+                 locale: 'br',
+                 sideBySide: true,
+            });
+        });
     </script>
 
 {% endblock %} 

@@ -4,8 +4,6 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import viewsets
-from calendario.api.fake.serializers import CalendarioSerializer
-from calendario.api.fake.objects import Calendario
 from datetime import datetime
 from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic import TemplateView, DetailView
@@ -19,16 +17,28 @@ from .models import Evento, Local
 from .forms import LocalForm, EventoForm
 
 
+#--------------------------------------------------------------------------------------
+#
+#--------------------------------------------------------------------------------------
 class CalendarioIndex(SuccessMessageMixin, TemplateView):
 	template_name = 'calendario/index.html'
 
+#--------------------------------------------------------------------------------------
+#
+#--------------------------------------------------------------------------------------
 class CalendarioEventoDetails(SuccessMessageMixin, DetailView):
 	template_name = 'calendario/evento/details.html'
 	model = Evento
 
+#--------------------------------------------------------------------------------------
+#
+#--------------------------------------------------------------------------------------
 class LocalIndex(CMCLoginRequired, SuccessMessageMixin, TemplateView):
     template_name = 'calendario/local/index.html'	
 
+#--------------------------------------------------------------------------------------
+#
+#--------------------------------------------------------------------------------------    
 class EventoIndex(CMCLoginRequired, SuccessMessageMixin, TemplateView):
     template_name = 'calendario/evento/index.html'
 
@@ -68,6 +78,7 @@ class EventoCreate(CreateView):
         obj.pessoa = self.request.session['pessoa_pessoa']
         obj.save()
         return super(EventoUpdate, self).form_valid(form)
+
 #--------------------------------------------------------------------------------------
 #
 #--------------------------------------------------------------------------------------
@@ -76,8 +87,7 @@ class EventoUpdate(CMCAdminLoginRequired, SuccessMessageMixin, UpdateView):
     form_class = EventoForm
     success_url = '/calendario/evento/'
     success_message = "Evento alterado com sucesso"
-    template_name = 'calendario/evento/update.html'
-
+    template_name = 'calendario/evento/update.html'           
 
     def form_valid(self, form):
         obj = form.save(commit=False)
@@ -85,6 +95,3 @@ class EventoUpdate(CMCAdminLoginRequired, SuccessMessageMixin, UpdateView):
         obj.pessoa = self.request.session['pessoa_pessoa']
         obj.save()
         return super(EventoUpdate, self).form_valid(form)
-#--------------------------------------------------------------------------------------
-#
-#--------------------------------------------------------------------------------------

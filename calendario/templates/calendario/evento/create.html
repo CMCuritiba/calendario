@@ -1,12 +1,12 @@
 {% extends "base_admin.html" %}
 {% load crispy_forms_tags %}
 
-{% block title %}Criação de Evento{% endblock %}
+{% block title %}Inclusão de Evento{% endblock %}
 
 {% block content %}
 
     <div class="panel panel-primary">
-        <div class="panel-heading">Serviços</div>
+        <div class="panel-heading">Criar novo evento</div>
         <div class="panel-body">
             <form name="formulario" id="formulario" method="post" action="">
                 {% crispy form %}
@@ -22,7 +22,6 @@
         </div>
     </div>
     
-
 {% endblock %}
 
 {% block extra_javascript %}
@@ -40,5 +39,3 @@
     </script>
 
 {% endblock %}
-
-

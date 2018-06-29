@@ -5,6 +5,8 @@
 
 {% block content %}
 
+
+
     <div class="panel panel-info">
         <div class="panel-heading">Opções de Filtro</div>
         <div class="panel-body">
@@ -102,7 +104,7 @@
                 format: "dd/mm/yyyy",
                 language: "pt-BR",
                 todayHighlight: true,
-                clearBtn: true,
+                clearBtn: false,
                 autoclose: true,
                 orientation: "bottom left",
             });
@@ -110,7 +112,7 @@
                 format: "dd/mm/yyyy",
                 language: "pt-BR",
                 todayHighlight: true,
-                clearBtn: true,
+                clearBtn: false,
                 autoclose: true,
                 orientation: "bottom left",
             });
@@ -205,7 +207,8 @@
                                 return '';
                             }
                         }
-                }
+                    },
+                            
                 ],
                 "language": {
                     "info": "Páginas _PAGE_ de _PAGES_",
@@ -253,7 +256,7 @@
                     
                     var iMax_temp = $('#id_filtro_data_fim').val();
                     if (iMax_temp == '') {
-                      iMax_temp = today;
+                      iMax_temp = '01/01/2099';
                     }
                     
                     var arr_min = iMin_temp.split("/");
@@ -309,7 +312,7 @@
                 data: $('form.exclui').serialize(),
                 success: function(result){
                     console.log($('form.exclui').serialize());
-                    tableLocais.ajax.reload(null, false);
+                    tableEventos.ajax.reload(null, false);
                 },
                 error: function(xhr, status, error) {
                     console.log(status);
@@ -335,8 +338,7 @@
                 tableEventos.columns(4).search('^ATIVO', true, false).draw();        
             }
         });
-        $('#id_filtro_data_inicio').change( function() { tableEventos.draw(); } );
-        $('#id_filtro_data_fim').change( function() { tableEventos.draw(); } );
+        
         function getDate() {
             var today = new Date();
             var dd = today.getDate()-7;
@@ -353,6 +355,9 @@
             return today;
         }
         $('#id_filtro_data_inicio').val(getDate());
+        $('#id_filtro_data_inicio').change( function() { tableEventos.draw(); } );
+        $('#id_filtro_data_fim').change( function() { tableEventos.draw(); } );
+        $('#id_filtro_data_inicio').val('');
     </script>
 
 {% endblock %}

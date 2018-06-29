@@ -166,6 +166,9 @@ def bootstrap():
 	sudo('apt-get install libreoffice-core')
 	sudo('apt-get install libreoffice-writer')
 
+	# biblioteca de linguagens
+	sudo('apt-get install enchant')
+
 	# Cria os diretórios e permissões necessários 
 
 	#cria_grupo()

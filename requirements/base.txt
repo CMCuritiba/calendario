@@ -1,3 +1,4 @@
+
 Django==2.0.5
 
 Markdown==2.6.11
@@ -50,3 +51,9 @@ unipath
 # Redis support
 django-redis==4.7.0
 redis>=2.10.5
+
+django-pipeline-forgiving==1.0.0
+
+django-bootstrap3-datetimepicker-2==2.6.0
+
+pyenchant==2.0.0

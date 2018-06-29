@@ -6,7 +6,6 @@ import environ, os
 def gettext_noop(s):
     return s
 
-
 ROOT_DIR = environ.Path(__file__) - 3
 APPS_DIR = ROOT_DIR.path('calendario')
 
@@ -85,6 +84,10 @@ MIDDLEWARE = [
 
 AUTH_USER_MODEL = 'autentica.User'
 
+# SERVIDOR DE MICRO SERVICOS
+# ------------------------------------------------------------------------------
+MSCMC_SERVER = env('MSCMC_SERVER')
+
 # DEBUG
 # ------------------------------------------------------------------------------
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#debug
@@ -134,7 +137,7 @@ TIME_ZONE = 'America/Sao_Paulo'
 LANGUAGE_CODE = 'pt-BR'
 
 LANGUAGES = [
-    ('pt-BR', gettext_noop('Brazilian Portuguese')),
+    ('pt-br', gettext_noop('Brazilian Portuguese')),
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#site-id
@@ -300,9 +303,11 @@ PIPELINE = {
             'source_filenames': (
               'bootstrap/dist/css/bootstrap.css',
               'bootstrap-calendar/css/calendar.min.css',
+              'bootstrap-datepicker/dist/css/bootstrap-datepicker3.css',
               'datatables/media/css/jquery.dataTables.css',
               'datatables/media/css/dataTables.bootstrap.css',
               'datatables.net-responsive-bs/css/responsive.bootstrap.min.css',
+              'eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css',
               'callout.css',
             ),
             'output_filename': 'css/master.css',
@@ -312,22 +317,28 @@ PIPELINE = {
         'master': {
             'source_filenames': (
               'jquery/jquery.js',
+              'moment/min/moment.min.js',
+              'moment/locale/pt-br.js',
               'bootstrap/dist/js/bootstrap.min.js',
               'underscore/underscore-min.js',
               'bootstrap-calendar/js/language/pt-BR.js',
               'bootstrap-calendar/js/calendar.min.js',
+              'bootstrap-datepicker/dist/js/bootstrap-datepicker.js',
+              'bootstrap-datepicker/dist/locales/bootstrap-datepicker.pt-BR.min.js',
               'fontawesome/svg-with-js/js/fontawesome-all.min.js',
               'datatables/media/js/jquery.dataTables.js',
               'datatables/media/js/dataTables.bootstrap.js',
               'datatables.net-responsive/js/dataTables.responsive.min.js',
               'datatables.net-responsive-bs/js/responsive.bootstrap.min.js',
+              'eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js',
             ),
             'output_filename': 'js/master.js',
         }
     }
 }
 
-STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
+#STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
+STATICFILES_STORAGE = 'django_pipeline_forgiving.storages.PipelineForgivingStorage'
 
 # BOWER
 # ------------------------------------------------------------------------------
@@ -348,6 +359,7 @@ BOWER_INSTALLED_APPS = (
     #'vue',
     #'vue-strap',
     'fontawesome',
+    'moment',
     #'bootstrap-select'
 )
 
@@ -386,11 +398,11 @@ TINYMCE_DEFAULT_CONFIG = {
     'theme': 'modern',
     'plugins': 'link image preview codesample contextmenu table code lists',
     'toolbar1': 'formatselect | bold italic underline | alignleft aligncenter alignright alignjustify '
-                '| bullist numlist | outdent indent | table | link image | codesample | preview code',
+               '| bullist numlist | outdent indent | table | link image | codesample | preview code',
     'contextmenu': 'formats | link image',
     'menubar': False,
     'inline': False,
     'statusbar': True,
     'width': 'auto',
-    'height': 360, 
+    'height': 360,
 }
