@@ -308,6 +308,7 @@ PIPELINE = {
               'datatables/media/css/dataTables.bootstrap.css',
               'datatables.net-responsive-bs/css/responsive.bootstrap.min.css',
               'eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css',
+              'fullcalendar/dist/fullcalendar.min.css',
               'callout.css',
               'event.css',
             ),
@@ -332,6 +333,9 @@ PIPELINE = {
               'datatables.net-responsive/js/dataTables.responsive.min.js',
               'datatables.net-responsive-bs/js/responsive.bootstrap.min.js',
               'eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js',
+              'fullcalendar/dist/fullcalendar/fullcalendar.min.js',
+              'fullcalendar/dist/fullcalendar/gcal.min.js',
+              'fullcalendar/dist/fullcalendar/locale-all.min.js',
             ),
             'output_filename': 'js/master.js',
         }
@@ -361,6 +365,7 @@ BOWER_INSTALLED_APPS = (
     #'vue-strap',
     'fontawesome',
     'moment',
+    'fullcalendar',
     #'bootstrap-select'
 )
 

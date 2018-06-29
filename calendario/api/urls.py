@@ -11,7 +11,9 @@ urlpatterns = [
 	path('get_fake_calendario/', views.get_fake_calendario, name='get_fake_calendario'),
 	path('get_calendario/', views.get_calendario, name='get_calendario'),
 	path('get_locais/', views.get_locais, name='get_locais'),
+	path('get_eventos/', views.get_eventos, name='get_eventos'),
 	path('local/exclui/', views.call_local_exclui, name='call-local-exclui'),
+	path('evento/exclui/', views.call_evento_exclui, name='call-evento-exclui'),
 ]	
 
 #urlpatterns += router.urls
