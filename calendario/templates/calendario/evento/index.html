@@ -99,7 +99,9 @@
 
     <script>
         var tableEventos;
+
         $(document).ready(function() {
+
             $('#datetimepicker1').datepicker({
                 format: "dd/mm/yyyy",
                 language: "pt-BR",
@@ -108,6 +110,7 @@
                 autoclose: true,
                 orientation: "bottom left",
             });
+
             $('#datetimepicker2').datepicker({
                 format: "dd/mm/yyyy",
                 language: "pt-BR",
@@ -116,10 +119,12 @@
                 autoclose: true,
                 orientation: "bottom left",
             });
+
             $("button#submit").click(function() {
                 exclui();
                 $("#confirmaModal").modal('hide');
             })
+
             tableEventos = $('#teventos').DataTable({
                 responsive: true,
                 "order": [[ 2, "asc" ]],
@@ -209,6 +214,7 @@
                         }
                     },
                             
+
                 ],
                 "language": {
                     "info": "Páginas _PAGE_ de _PAGES_",
@@ -233,8 +239,10 @@
                 },
                 "sDom": '<"top"i>rt<"bottom"lp><"clear">',
             });
+
             $.fn.dataTableExt.afnFiltering.push(
                 function( oSettings, aData, iDataIndex ) {
+
                     var today = new Date();
                     var dd = today.getDate();
                     var mm = today.getMonth() + 1;
@@ -249,6 +257,7 @@
                     today = dd+'/'+mm+'/'+yyyy;
                     
                     if ($('#id_filtro_data_inicio').val() != '' || $('#id_filtro_data_fim').val() != '') {
+
                     var iMin_temp = $('#id_filtro_data_inicio').val();
                     if (iMin_temp == '') {
                       iMin_temp = '01/01/1980';
@@ -265,6 +274,7 @@
                     var iMin = new Date(arr_min[2], arr_min[1], arr_min[0], 0, 0, 0, 0)
                     var iMax = new Date(arr_max[2], arr_max[1], arr_max[0], 0, 0, 0, 0)
                     var iDate = new Date(arr_date[2], arr_date[1], arr_date[0], 0, 0, 0, 0)
+
                     if ( iMin == "" && iMax == "" )
                     {
                         return true;
@@ -285,8 +295,11 @@
                     }
                 }
             );
+
             tableEventos.columns(4).search('^ATIVO',true, false).draw();    
+
         });
+
         $('#confirmaModal').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget);
             var pk = button.data('evento_id');
@@ -299,11 +312,14 @@
             modal.find('#evento_inicio').html(recinicio);
             modal.find('#evento_fim').html(recfim);
         });
+
         function criaEvento() {
             location.href = '/calendario/evento/novo/';
         }
+
         function exclui() {
             request_url = '/api/evento/exclui/';
+
             $.ajax({
                 url: request_url,
                 type: 'POST',
@@ -321,6 +337,7 @@
                 }
             })
         }
+
         $('#id_filtro_usuario').click(function() {
             var pessoa = $('#id_pessoa').val();
             if (this.checked) {
@@ -330,6 +347,7 @@
                 tableEventos.columns(5).search('',true, false).draw();    
             }
         });
+
         $('#id_filtro_ativo').click(function() {
             if (this.checked) {
                 tableEventos.columns(4).search('ATIVO',true, false).draw();  
@@ -338,6 +356,7 @@
                 tableEventos.columns(4).search('^ATIVO', true, false).draw();        
             }
         });
+
         
         function getDate() {
             var today = new Date();
@@ -354,10 +373,15 @@
             today = dd+'/'+mm+'/'+yyyy;
             return today;
         }
+
         $('#id_filtro_data_inicio').val(getDate());
+
         $('#id_filtro_data_inicio').change( function() { tableEventos.draw(); } );
+
         $('#id_filtro_data_fim').change( function() { tableEventos.draw(); } );
+
         $('#id_filtro_data_inicio').val('');
+
     </script>
 
 {% endblock %}
