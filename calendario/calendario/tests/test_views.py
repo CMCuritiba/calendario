@@ -255,4 +255,4 @@ class EventoUpdateTest(TestCase):
 		response = EventoUpdate.as_view()(request, pk=1)
 		response.render()
 		self.assertEqual(response.status_code, 200)								
-		self.assertEqual(response.template_name[0], 'calendario/evento/update.html')		
+		self.assertEqual(response.template_name[0], 'calendario/evento/update.html')

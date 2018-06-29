@@ -38,7 +38,7 @@ class LocalIndex(CMCLoginRequired, SuccessMessageMixin, TemplateView):
 
 #--------------------------------------------------------------------------------------
 #
-#--------------------------------------------------------------------------------------
+#--------------------------------------------------------------------------------------    
 class EventoIndex(CMCLoginRequired, SuccessMessageMixin, TemplateView):
     template_name = 'calendario/evento/index.html'
 
@@ -65,12 +65,12 @@ class LocalUpdate(CMCAdminLoginRequired, SuccessMessageMixin, UpdateView):
 #--------------------------------------------------------------------------------------
 #
 #--------------------------------------------------------------------------------------
-class EventoUpdate(CMCAdminLoginRequired, SuccessMessageMixin, UpdateView):
+class EventoCreate(CreateView):
     model = Evento
     form_class = EventoForm
     success_url = '/calendario/evento/'
-    success_message = "Evento alterado com sucesso"
-    template_name = 'calendario/evento/update.html'           
+    success_message = "Evento criado com sucesso"
+    template_name = 'calendario/evento/create.html'
 
     def form_valid(self, form):
         obj = form.save(commit=False)
@@ -82,12 +82,12 @@ class EventoUpdate(CMCAdminLoginRequired, SuccessMessageMixin, UpdateView):
 #--------------------------------------------------------------------------------------
 #
 #--------------------------------------------------------------------------------------
-class EventoCreate(CMCAdminLoginRequired, SuccessMessageMixin, CreateView):
+class EventoUpdate(CMCAdminLoginRequired, SuccessMessageMixin, UpdateView):
     model = Evento
     form_class = EventoForm
     success_url = '/calendario/evento/'
-    success_message = "Evento criado com sucesso"
-    template_name = 'calendario/evento/create.html'           
+    success_message = "Evento alterado com sucesso"
+    template_name = 'calendario/evento/update.html'           
 
     def form_valid(self, form):
         obj = form.save(commit=False)

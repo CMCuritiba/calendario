@@ -54,7 +54,7 @@ class LocalForm(forms.ModelForm):
 				Div('status', css_class='col-md-12',),
 				css_class='col-md-3 row',
 			),
-		)		
+		)
 
 #------------------------------------------------------------------------------------------
 # classe form utilizada para validar JSON de alteração de status dos eventos
@@ -67,13 +67,13 @@ class JSONEventoForm(forms.Form):
 		self.fields['pk'] = forms.IntegerField()
 
 #------------------------------------------------------------------------------------------
-# classe form para manutenção de eventos
+# classe form para manutencao de eventos
 #------------------------------------------------------------------------------------------
 class EventoForm(forms.ModelForm):
 
 	class Meta:
 		model = Evento
-		fields = ['evento', 'url', 'classe','inicio','fim','descricao','status']
+		fields = ['evento', 'url', 'classe','inicio','fim','local','descricao','status']
 
 	def __init__(self, *args, **kwargs):
 		super(EventoForm, self).__init__(*args, **kwargs)
@@ -121,6 +121,7 @@ class EventoForm(forms.ModelForm):
 				css_class='col-md-12 row',
 			),
 			Div(
+                Div('local', css_class='col-md-12',),
 				Div('descricao', css_class='col-md-12',),
 				css_class='col-md-12 row',
 			),

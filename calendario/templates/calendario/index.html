@@ -61,6 +61,43 @@
 			},
 			events_source: '/api/get_calendario/'
 		});
+		(function($) {
+			"use strict";
+			$('.btn-group button[data-calendar-nav]').each(function() {
+				var $this = $(this);
+				$this.click(function() {
+					calendar.navigate($this.data('calendar-nav'));
+				});
+			});
+			$('.btn-group button[data-calendar-view]').each(function() {
+				var $this = $(this);
+				$this.click(function() {
+					calendar.view($this.data('calendar-view'));
+				});
+			});
+		}(jQuery));
+	</script>
+
+
+{% endblock %}
+
+
+{% block extra_javascript %}
+
+	<script type="text/javascript">
+		var calendar = $("#calendar").calendar({
+			tmpl_path: '/static/bootstrap-calendar/tmpls/',
+			language: 'pt-BR',
+			first_day: 1,
+			view: 'month',
+			modal: '#events-modal',
+			onAfterViewLoad: function(view) {
+				$('.btn-group button').removeClass('active');
+				$('button[data-calendar-view="' + view + '"]').addClass('active');
+				$('.page-header h3').text('Calendário - ' + this.getTitle());
+			},
+			events_source: '/api/get_calendario/'
+		});
 
 		(function($) {
 
