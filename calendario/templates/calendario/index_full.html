@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Calendário{% endblock %}
+
+{% block content %}
+
+<div id="calendar"></div>
+
+{% endblock %}
+
+{% block extra_javascript %}
+
+	<script type="text/javascript">
+		$(function() {
+
+			// page is now ready, initialize the calendar...
+
+			$('#calendar').fullCalendar({
+				locale: 'br',
+				firstDay: 1,
+				events: {
+					url: '/api/get_calendario_full/',
+					error: function() {
+          				alert('erro');
+        			}
+				},
+				eventClick: function(event) {
+    				if (event.url) {
+      					window.open(event.url, 'w_evento');
+      					return false;
+    				}
+  				}
+			})
+
+		});
+
+	</script>
+
+
+{% endblock %}

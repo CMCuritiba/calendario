@@ -6,17 +6,23 @@ def gera_url(id):
 
 def gera_class(classe):
 	if classe == 'IMPORTANTE':
-		return 'event-important'
+		#return 'event-important'
+		return '#B40404'
 	elif classe == 'ESPECIAL':
-		return 'event-special'
+		#return 'event-special'
+		return '#BE81F7'
 	elif classe == 'INVERSO':
-		return 'event-inverse'		
+		#return 'event-inverse'		
+		return '#BDBDBD'
 	elif classe == 'SUCESSO':
-		return 'event-success'
+		#return 'event-success'
+		return '#298A08'
 	elif classe == 'INFO':
-		return 'event-info'
+		#return 'event-info'
+		return '#084B8A'
 	elif classe == 'ATENÇÃO':
-		return 'event-warning'
+		#return 'event-warning'
+		return '#DF7401'
 	else:
 		return ''
 
