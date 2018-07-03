@@ -65,7 +65,7 @@ class LocalUpdate(CMCAdminLoginRequired, SuccessMessageMixin, UpdateView):
 #--------------------------------------------------------------------------------------
 #
 #--------------------------------------------------------------------------------------
-class EventoCreate(SuccessMessageMixin, CreateView):
+class EventoCreate(CMCAdminLoginRequired, SuccessMessageMixin, CreateView):
     model = Evento
     form_class = EventoForm
     success_url = '/calendario/evento/'
@@ -77,7 +77,7 @@ class EventoCreate(SuccessMessageMixin, CreateView):
         obj.setor = self.request.session['setor_id']
         obj.pessoa = self.request.session['pessoa_pessoa']
         obj.save()
-        return super(EventoUpdate, self).form_valid(form)
+        return super(EventoCreate, self).form_valid(form)
 
 #--------------------------------------------------------------------------------------
 #

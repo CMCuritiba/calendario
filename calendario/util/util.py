@@ -11,9 +11,9 @@ def gera_class(classe):
 	elif classe == 'ESPECIAL':
 		#return 'event-special'
 		return '#BE81F7'
-	elif classe == 'INVERSO':
+	elif classe == 'FERIADO':
 		#return 'event-inverse'		
-		return '#BDBDBD'
+		return '#e6b800'
 	elif classe == 'SUCESSO':
 		#return 'event-success'
 		return '#298A08'

@@ -92,8 +92,8 @@ class EventoModelTest(TestCase):
 			evento = EventoFactory.create(setor=None)			
 
 	def test_evento_insere_local_nulo(self):
-		with self.assertRaises(IntegrityError):
-			evento = EventoFactory.create(local=None)
+		evento = EventoFactory.create(local=None)
+		self.assertEqual(evento.id, 1)
 
 	def test_evento_duplicado_ok(self):
 		evento = EventoFactory.create()

@@ -44,7 +44,7 @@ class Evento(models.Model):
 
 	CLASSE_IMPORTANTE = 'IMPORTANTE'
 	CLASSE_ESPECIAL = 'ESPECIAL'
-	CLASSE_INVERSO = 'INVERSO'
+	CLASSE_FERIADO = 'FERIADO'
 	CLASSE_SUCESSO = 'SUCESSO'
 	CLASSE_INFO = 'INFO'
 	CLASSE_ATENCAO = 'ATENÇÃO'
@@ -52,7 +52,7 @@ class Evento(models.Model):
 	CLASSE_CHOICES = (
 		(CLASSE_IMPORTANTE, 'IMPORTANTE'),
 		(CLASSE_ESPECIAL, 'ESPECIAL'),
-		(CLASSE_INVERSO, 'INVERSO'),
+		(CLASSE_FERIADO, 'FERIADO'),
 		(CLASSE_SUCESSO, 'SUCESSO'),
 		(CLASSE_INFO, 'INFO'),
 		(CLASSE_ATENCAO, 'ATENÇÃO'),
@@ -71,7 +71,7 @@ class Evento(models.Model):
 	classe = models.CharField(max_length=10, null=True, blank=True, choices=CLASSE_CHOICES, default=CLASSE_NULO)
 	inicio = models.DateTimeField()
 	fim = models.DateTimeField()
-	local = models.ForeignKey(Local, models.CASCADE)
+	local = models.ForeignKey(Local, models.CASCADE, blank=True, null=True)
 	descricao = HTMLField(null=True, blank=True)
 	pessoa = models.IntegerField()
 	setor = models.IntegerField()
