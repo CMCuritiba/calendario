@@ -302,7 +302,7 @@ PIPELINE = {
         'master': {
             'source_filenames': (
               'bootstrap/dist/css/bootstrap.css',
-              'bootstrap-calendar/css/calendar.min.css',
+              #'bootstrap-calendar/css/calendar.min.css',
               'bootstrap-datepicker/dist/css/bootstrap-datepicker3.css',
               'datatables/media/css/jquery.dataTables.css',
               'datatables/media/css/dataTables.bootstrap.css',
@@ -323,8 +323,8 @@ PIPELINE = {
               'moment/locale/pt-br.js',
               'bootstrap/dist/js/bootstrap.min.js',
               'underscore/underscore-min.js',
-              'bootstrap-calendar/js/language/pt-BR.js',
-              'bootstrap-calendar/js/calendar.min.js',
+              #'bootstrap-calendar/js/language/pt-BR.js',
+              #'bootstrap-calendar/js/calendar.min.js',
               'bootstrap-datepicker/dist/js/bootstrap-datepicker.js',
               'bootstrap-datepicker/dist/locales/bootstrap-datepicker.pt-BR.min.js',
               'fontawesome/svg-with-js/js/fontawesome-all.min.js',
@@ -342,8 +342,8 @@ PIPELINE = {
     }
 }
 
-#STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
-STATICFILES_STORAGE = 'django_pipeline_forgiving.storages.PipelineForgivingStorage'
+STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
+#STATICFILES_STORAGE = 'django_pipeline_forgiving.storages.PipelineForgivingStorage'
 
 # BOWER
 # ------------------------------------------------------------------------------
@@ -354,13 +354,14 @@ BOWER_INSTALLED_APPS = (
     #'jquery',
     'underscore',
     'bootstrap',
-    'bootstrap-calendar',
+    #'bootstrap-calendar',
     #'jasny-bootstrap',
     'datatables',
     'datatables-bootstrap3',
     'bootstrap-3-datepicker',
     'bootstrap-datepicker',
     'eonasdan-bootstrap-datetimepicker#latest',
+    'bootstrap3-datetimepicker',
     #'vue',
     #'vue-strap',
     'fontawesome',

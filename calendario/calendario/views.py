@@ -77,7 +77,7 @@ class EventoCreate(CreateView):
         obj.setor = self.request.session['setor_id']
         obj.pessoa = self.request.session['pessoa_pessoa']
         obj.save()
-        return super(EventoUpdate, self).form_valid(form)
+        return super(EventoCreate, self).form_valid(form)
 
 #--------------------------------------------------------------------------------------
 #

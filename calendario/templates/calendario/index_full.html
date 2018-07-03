@@ -19,6 +19,17 @@
 			$('#calendar').fullCalendar({
 				locale: 'br',
 				firstDay: 1,
+				themeSystem: 'bootstrap4',
+				timeFormat: 'hh:mm',
+				weekends: false,
+				columnHeader: true,
+				buttonText: {
+					today:    'Hoje',
+  					month:    'Mês',
+  					week:     'Semana',
+  					day:      'Dia',
+  					list:     'Lista'
+				},
 				events: {
 					url: '/api/get_calendario_full/',
 					error: function() {
@@ -30,8 +41,13 @@
       					window.open(event.url, 'w_evento');
       					return false;
     				}
-  				}
+  				},
+  				eventRender: function(event, element) {
+  					alert(event.title);
+  				},
 			})
+
+			var bola = $('#calendars').fullCalendar('weekends');
 
 		});
 
