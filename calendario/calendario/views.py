@@ -65,7 +65,7 @@ class LocalUpdate(CMCAdminLoginRequired, SuccessMessageMixin, UpdateView):
 #--------------------------------------------------------------------------------------
 #
 #--------------------------------------------------------------------------------------
-class EventoCreate(SuccessMessageMixin, CreateView):
+class EventoCreate(CMCAdminLoginRequired, SuccessMessageMixin, CreateView):
     model = Evento
     form_class = EventoForm
     success_url = '/calendario/evento/'
