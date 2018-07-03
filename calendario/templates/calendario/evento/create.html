@@ -16,8 +16,8 @@
     <div class="panel panel-primary">
         <div class="panel-body">
             <div class="col-md-12 row">
-                <input type="button" onclick="javascript:voltar();" value="Voltar ao Calendário" class="btn btn-default"/> 
                 <button type="button" class="btn btn-primary" onclick="javascript:salvar();">Salvar</button>
+                <input type="button" onclick="javascript:voltar();" value="Voltar" class="btn btn-default"/> 
             </div>
         </div>
     </div>
@@ -27,15 +27,25 @@
 {% block extra_javascript %}
 
     <script>
-
         function salvar() {
             $('#formulario').submit();
         }
-
         function voltar() {
             location.href = '/calendario/evento/';
         }
-
+        $(function () {
+            $('#id_inicio').datetimepicker({
+                 locale: 'br',
+                 sideBySide: true,
+                 icons: {
+                    date: 'fas fa-calendar-alt',
+                 }
+            });
+            $('#id_fim').datetimepicker({
+                 locale: 'br',
+                 sideBySide: true,
+            });
+        });
     </script>
 
 {% endblock %}

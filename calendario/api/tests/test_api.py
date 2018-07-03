@@ -82,7 +82,7 @@ class JSONCalendarioTest(TestCase):
 		evento = EventoFactory.create()
 		response = self.client.get('/api/get_calendario/', follow=True, pk=1)
 		data = json.loads(response.content.decode('utf-8'))
-		self.assertEqual('event-important', data['result'][0]['class'])
+		self.assertEqual('#B40404', data['result'][0]['class'])
 
 
 class JSONLocalTest(TestCase):
