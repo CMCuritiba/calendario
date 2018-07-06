@@ -18,7 +18,7 @@ from tinymce.widgets import TinyMCE
 
 from django.contrib.sessions.backends.db import SessionStore
 
-from calendario.calendario.models import Evento, Local
+from calendario.calendario.models import Evento, Local, Comunicado
 
 #------------------------------------------------------------------------------------------
 # classe form utilizada para validar JSON de alteração de status dos locais
@@ -127,3 +127,29 @@ class EventoForm(forms.ModelForm):
 			),
 		)  
 		
+#------------------------------------------------------------------------------------------
+# classe form para manutenção de comunicados
+#------------------------------------------------------------------------------------------
+class ComunicadoForm(forms.ModelForm):
+
+	class Meta:
+		model = Comunicado
+		fields = ['titulo', 'inicio', 'fim', 'descricao']
+
+	def __init__(self, *args, **kwargs):
+		super(ComunicadoForm, self).__init__(*args, **kwargs)
+
+		self.helper = FormHelper()
+		self.helper.form_tag = False
+
+		self.helper.layout = Layout(
+			Div(
+				Div('titulo', css_class='col-md-12',),
+				css_class='col-md-12 row',
+			),
+			Div(
+				Div('inicio', css_class='col-md-6',),
+				Div('fim', css_class='col-md-6',),
+				css_class='col-md-12 row',
+			),
+		)

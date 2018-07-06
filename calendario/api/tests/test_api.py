@@ -130,3 +130,34 @@ class JSONCallSecureLocalExcluiTest(TestCase):
 		)
 
 		self.assertEqual(response.status_code, 200)
+
+class JSONComunicadoTest(TestCase):
+	def setup(self):
+		self.factory = APIRequestFactory()
+
+	def test_dummy(self):
+		self.assertEqual(1,1)
+
+	def test_url(self):
+		response = self.client.get('/api/get_comunicados/', follow=True)
+		self.assertEqual(response.status_code, 200)
+
+'''
+	def test_retorna_entradas(self):
+		local = LocalFactory.create()
+		response = self.client.get('/api/get_locais/', follow=True, pk=1)
+		data = json.loads(response.content.decode('utf-8'))
+		self.assertIn('Camara', data[0]['local'])
+
+	def test_local(self):
+		local = LocalFactory.create()
+		response = self.client.get('/api/get_locais/', follow=True, pk=1)
+		data = json.loads(response.content.decode('utf-8'))
+		self.assertEqual('Camara Municipal de Curitiba', data[0]['local'])
+
+	def test_status(self):
+		local = LocalFactory.create()
+		response = self.client.get('/api/get_locais/', follow=True, pk=1)
+		data = json.loads(response.content.decode('utf-8'))
+		self.assertEqual('ATIVO', data[0]['status'])				
+'''		

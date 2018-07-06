@@ -101,3 +101,9 @@ class EventoUpdate(CMCAdminLoginRequired, SuccessMessageMixin, UpdateView):
 #--------------------------------------------------------------------------------------
 class FullCalendarioIndex(SuccessMessageMixin, TemplateView):
     template_name = 'calendario/index_full.html'        
+
+#--------------------------------------------------------------------------------------
+# Classe index comunicado
+#--------------------------------------------------------------------------------------    
+class ComunicadoIndex(CMCLoginRequired, SuccessMessageMixin, TemplateView):
+    template_name = 'calendario/comunicado/index.html'    

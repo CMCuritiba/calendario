@@ -15,6 +15,7 @@ urlpatterns = [
 	path('local/exclui/', views.call_local_exclui, name='call-local-exclui'),
 	path('evento/exclui/', views.call_evento_exclui, name='call-evento-exclui'),
 	path('get_calendario_full/', views.get_calendario_full, name='get_calendario_full'),
+	path('get_comunicados/', views.get_comunicados, name='get_comunicados'),
 ]	
 
 #urlpatterns += router.urls
