@@ -13,5 +13,7 @@ urlpatterns = [
 	path('evento/novo/', views.EventoCreate.as_view(), name='evento-novo'),
 	path('evento/altera/<int:pk>/', views.EventoUpdate.as_view(), name='evento-altera'),
 	path('full', views.FullCalendarioIndex.as_view(), name='full-index'),
-
+	path('comunicado/', views.ComunicadoIndex.as_view(), name='comunicado-index'),
+	path('comunicado/novo/', views.ComunicadoCreate.as_view(), name='comunicado-novo'),
+	path('comunicado/altera/<int:pk>/', views.ComunicadoUpdate.as_view(), name='comunicado-altera'),
 ]	

@@ -13,7 +13,7 @@ from calendario.util.util import gera_url, gera_class, gera_status
 
 import json
 
-from calendario.calendario.models import Evento, Local
+from calendario.calendario.models import Evento, Local, Comunicado
 from calendario.calendario.forms import JSONLocalForm, JSONEventoForm
 
 '''
@@ -197,3 +197,36 @@ def get_calendario_full(request):
 
 
 	return JsonResponse(entradas_json, safe=False)	
+# -----------------------------------------------------------------------------------
+# retorna lista de comunicados
+# -----------------------------------------------------------------------------------
+def get_comunicados(request):
+	comunicados = Comunicado.objects.all().order_by("-inicio")
+
+	entradas_json = []
+	for c in comunicados:
+		e_json = {}
+		e_json['id'] = c.id
+		e_json['titulo'] = c.titulo
+		e_json['inicio'] = c.inicio.strftime('%d/%m/%Y')
+		e_json['fim'] = c.fim.strftime('%d/%m/%Y')
+		entradas_json.append(e_json)
+
+	return JsonResponse(entradas_json, safe=False)		
+
+# -----------------------------------------------------------------------------------
+# chamada API segura para exclusão de comunicados
+# -----------------------------------------------------------------------------------
+def call_comunicado_exclui(request):
+	response = JsonResponse({'status':'false','message':'Erro ao tentar excluir comunicado'}, status=404)
+
+	if request.method == 'POST':
+		widget_json = {}
+		pk = request.POST.get('pk', None)
+		if (pk != None):
+			comunicado = Comunicado.objects.get(pk=pk)
+			form = JSONEventoForm(request.POST)
+			if (form.is_valid()):
+				comunicado.delete()
+				response = JsonResponse({'status':'true','message':'Comunicado excluído com sucesso'}, status=200)
+	return response			

@@ -3,7 +3,7 @@ from django.test import TestCase, Client
 from django.urls import reverse
 import json
 
-from calendario.calendario.factories import EventoFactory, LocalFactory
+from calendario.calendario.factories import EventoFactory, LocalFactory, ComunicadoFactory
 
 
 class JSONFakeTest(TestCase):
@@ -126,6 +126,54 @@ class JSONCallSecureLocalExcluiTest(TestCase):
 		local = LocalFactory.create()	
 		response = self.client.post(
 			'/api/local/exclui/', 
+			{'pk': 1}
+		)
+
+		self.assertEqual(response.status_code, 200)
+
+class JSONComunicadoTest(TestCase):
+	def setup(self):
+		self.factory = APIRequestFactory()
+
+	def test_dummy(self):
+		self.assertEqual(1,1)
+
+	def test_url(self):
+		response = self.client.get('/api/get_comunicados/', follow=True)
+		self.assertEqual(response.status_code, 200)
+
+'''
+	def test_retorna_entradas(self):
+		local = LocalFactory.create()
+		response = self.client.get('/api/get_locais/', follow=True, pk=1)
+		data = json.loads(response.content.decode('utf-8'))
+		self.assertIn('Camara', data[0]['local'])
+
+	def test_local(self):
+		local = LocalFactory.create()
+		response = self.client.get('/api/get_locais/', follow=True, pk=1)
+		data = json.loads(response.content.decode('utf-8'))
+		self.assertEqual('Camara Municipal de Curitiba', data[0]['local'])
+
+	def test_status(self):
+		local = LocalFactory.create()
+		response = self.client.get('/api/get_locais/', follow=True, pk=1)
+		data = json.loads(response.content.decode('utf-8'))
+		self.assertEqual('ATIVO', data[0]['status'])				
+'''		
+
+class JSONCallSecureComunicadoExcluiTest(TestCase):
+	def setup(self):
+		self.factory = APIRequestFactory()
+		super(JSONCallSecureComunicadoExcluiTest, self).setUp()
+
+	def test_dummy(self):
+		self.assertEqual(1,1)		
+
+	def test_url(self):
+		comunicado = ComunicadoFactory.create()	
+		response = self.client.post(
+			'/api/comunicado/exclui/', 
 			{'pk': 1}
 		)
 

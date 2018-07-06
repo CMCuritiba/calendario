@@ -6,10 +6,13 @@ from django.urls import reverse
 from django.contrib.auth import get_user_model
 from datetime import datetime
 
-from ..factories import LocalFactory, EventoFactory
+from ..factories import LocalFactory, EventoFactory, ComunicadoFactory
 
 from ..models import Local
 
+#--------------------------------------------------------------------------------------
+# Testes model Local
+#--------------------------------------------------------------------------------------
 class LocalModelTest(TestCase):
 	
 	nome_usuario = 'zaca'
@@ -37,6 +40,9 @@ class LocalModelTest(TestCase):
 		with self.assertRaises(IntegrityError):
 			local = LocalFactory.create(status=None)
 
+#--------------------------------------------------------------------------------------
+# Testes model Evento
+#--------------------------------------------------------------------------------------
 class EventoModelTest(TestCase):
 
 	nome_usuario = 'zaca'
@@ -99,3 +105,40 @@ class EventoModelTest(TestCase):
 		evento = EventoFactory.create()
 		with self.assertRaises(IntegrityError):
 			evento = EventoFactory.create()
+
+#--------------------------------------------------------------------------------------
+# Testes model comunicado
+#--------------------------------------------------------------------------------------
+class ComunicadoModelTest(TestCase):
+	
+	nome_usuario = 'zaca'
+	senha = 'nosferatu'
+
+	def setUp(self):
+		self.user = get_user_model().objects.create_user(self.nome_usuario, password=self.senha)
+		self.user.is_staff = True
+		self.user.save()
+		self.factory = RequestFactory()
+
+	def test_dummy(self):
+		self.assertEqual(1,1)
+
+	def test_local_status_ok(self):
+		comunicado = ComunicadoFactory.create()
+		self.assertEqual(comunicado.titulo, 'Aviso comunicado')
+
+	def test_insere_titulo_nulo(self):
+		with self.assertRaises(IntegrityError):
+			comunicado = ComunicadoFactory.create(titulo=None)
+
+	def test_insere_inicio_nulo(self):
+		with self.assertRaises(IntegrityError):
+			comunicado = ComunicadoFactory.create(inicio=None)
+
+	def test_insere_fim_nulo(self):
+		with self.assertRaises(IntegrityError):
+			comunicado = ComunicadoFactory.create(fim=None)			
+
+	def test_insere_descricao_nulo(self):
+		with self.assertRaises(IntegrityError):
+			comunicado = ComunicadoFactory.create(descricao=None)			

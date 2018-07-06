@@ -13,8 +13,8 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.http import HttpResponseRedirect, HttpResponse
 
 from autentica.util.mixin import CMCLoginRequired, CMCAdminLoginRequired
-from .models import Evento, Local
-from .forms import LocalForm, EventoForm
+from .models import Evento, Local, Comunicado
+from .forms import LocalForm, EventoForm, ComunicadoForm
 
 
 #--------------------------------------------------------------------------------------
@@ -101,3 +101,29 @@ class EventoUpdate(CMCAdminLoginRequired, SuccessMessageMixin, UpdateView):
 #--------------------------------------------------------------------------------------
 class FullCalendarioIndex(SuccessMessageMixin, TemplateView):
     template_name = 'calendario/index_full.html'        
+
+#--------------------------------------------------------------------------------------
+# Classe index comunicado
+#--------------------------------------------------------------------------------------    
+class ComunicadoIndex(CMCLoginRequired, SuccessMessageMixin, TemplateView):
+    template_name = 'calendario/comunicado/index.html'    
+
+#--------------------------------------------------------------------------------------
+# Classe para criação de comunicado
+#--------------------------------------------------------------------------------------
+class ComunicadoCreate(CMCAdminLoginRequired, SuccessMessageMixin, CreateView):
+    model = Comunicado
+    form_class = ComunicadoForm
+    success_url = '/calendario/comunicado/'
+    success_message = "Comunicado criado com sucesso"
+    template_name = 'calendario/comunicado/create.html'       
+
+#--------------------------------------------------------------------------------------
+# Classe para alteração de comunicado
+#--------------------------------------------------------------------------------------
+class ComunicadoUpdate(CMCAdminLoginRequired, SuccessMessageMixin, UpdateView):
+    model = Comunicado
+    form_class = ComunicadoForm
+    success_url = '/calendario/comunicado/'
+    success_message = "Comunicado alterado com sucesso"
+    template_name = 'calendario/comunicado/update.html'           

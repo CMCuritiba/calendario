@@ -76,3 +76,15 @@ class Evento(models.Model):
 	pessoa = models.IntegerField()
 	setor = models.IntegerField()
 	status = models.CharField(max_length=1, choices=STATUS_CHOICES, default=STATUS_ATIVO)
+
+#---------------------------------------------------------------------------------------------
+# Model Comunicado
+#---------------------------------------------------------------------------------------------
+class Comunicado(models.Model):
+	class Meta:
+		verbose_name_plural = 'Comunicados'
+
+	titulo = models.CharField(max_length=200)
+	inicio = models.DateField()
+	fim = models.DateField()
+	descricao = models.CharField(max_length=500)
