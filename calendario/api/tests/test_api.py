@@ -3,7 +3,7 @@ from django.test import TestCase, Client
 from django.urls import reverse
 import json
 
-from calendario.calendario.factories import EventoFactory, LocalFactory
+from calendario.calendario.factories import EventoFactory, LocalFactory, ComunicadoFactory
 
 
 class JSONFakeTest(TestCase):
@@ -161,3 +161,20 @@ class JSONComunicadoTest(TestCase):
 		data = json.loads(response.content.decode('utf-8'))
 		self.assertEqual('ATIVO', data[0]['status'])				
 '''		
+
+class JSONCallSecureComunicadoExcluiTest(TestCase):
+	def setup(self):
+		self.factory = APIRequestFactory()
+		super(JSONCallSecureComunicadoExcluiTest, self).setUp()
+
+	def test_dummy(self):
+		self.assertEqual(1,1)		
+
+	def test_url(self):
+		comunicado = ComunicadoFactory.create()	
+		response = self.client.post(
+			'/api/comunicado/exclui/', 
+			{'pk': 1}
+		)
+
+		self.assertEqual(response.status_code, 200)

@@ -213,3 +213,20 @@ def get_comunicados(request):
 		entradas_json.append(e_json)
 
 	return JsonResponse(entradas_json, safe=False)		
+
+# -----------------------------------------------------------------------------------
+# chamada API segura para exclusão de comunicados
+# -----------------------------------------------------------------------------------
+def call_comunicado_exclui(request):
+	response = JsonResponse({'status':'false','message':'Erro ao tentar excluir comunicado'}, status=404)
+
+	if request.method == 'POST':
+		widget_json = {}
+		pk = request.POST.get('pk', None)
+		if (pk != None):
+			comunicado = Comunicado.objects.get(pk=pk)
+			form = JSONEventoForm(request.POST)
+			if (form.is_valid()):
+				comunicado.delete()
+				response = JsonResponse({'status':'true','message':'Comunicado excluído com sucesso'}, status=200)
+	return response			

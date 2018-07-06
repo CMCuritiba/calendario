@@ -152,4 +152,8 @@ class ComunicadoForm(forms.ModelForm):
 				Div('fim', css_class='col-md-6',),
 				css_class='col-md-12 row',
 			),
+			Div(
+				Div('descricao', css_class='col-md-12',),
+				css_class='col-md-12 row',
+			),
 		)
