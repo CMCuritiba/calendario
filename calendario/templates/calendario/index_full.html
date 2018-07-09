@@ -5,13 +5,237 @@
 
 {% block content %}
 
-<div id="calendar"></div>
+<style type="text/css">
+	.coluna {
+		padding-top: 10px;
+		padding-bottom: 10px;
+		background-color: #eee;
+		background-color: rgba(86,61,124,.15);
+		border: 1px solid #ddd;
+		border: 1px solid rgba(86,61,124,.2);
+	}
+	.coluna1 {
+		padding-top: 10px;
+		padding-bottom: 10px;
+		background-color: #eee;
+		background-color: #E0BBA9;
+		border: 1px solid #ddd;
+		border: 1px solid rgba(86,61,124,.2);
+	}
+	.coluna2 {
+		padding-top: 10px;
+		padding-bottom: 10px;
+		background-color: #eee;
+		background-color: #FFE699;
+		border: 1px solid #ddd;
+		border: 1px solid rgba(86,61,124,.2);
+	}
+	.coluna3 {
+		padding-top: 10px;
+		padding-bottom: 10px;
+		background-color: #eee;
+		background-color: #D2FFC4;
+		border: 1px solid #ddd;
+		border: 1px solid rgba(86,61,124,.2);
+	}
+	.coluna4 {
+		padding-top: 10px;
+		padding-bottom: 10px;
+		background-color: #eee;
+		background-color: #C0F7FE;
+		border: 1px solid #ddd;
+		border: 1px solid rgba(86,61,124,.2);
+	}
+	.coluna5 {
+		padding-top: 10px;
+		padding-bottom: 10px;
+		background-color: #eee;
+		background-color: #FFDFFF;
+		border: 1px solid #ddd;
+		border: 1px solid rgba(86,61,124,.2);
+	}
+	.coluna6 {
+		padding-top: 10px;
+		padding-bottom: 10px;
+		background-color: #eee;
+		background-color: #CACAFF;
+		border: 1px solid #ddd;
+		border: 1px solid rgba(86,61,124,.2);
+	}
+	.coluna7 {
+		padding-top: 10px;
+		padding-bottom: 10px;
+		background-color: #eee;
+		background-color: #FFAB60;
+		border: 1px solid #ddd;
+		border: 1px solid rgba(86,61,124,.2);
+	}
+	.coluna8 {
+		padding-top: 10px;
+		padding-bottom: 10px;
+		background-color: #eee;
+		background-color: #D7ACAC;
+		border: 1px solid #ddd;
+		border: 1px solid rgba(86,61,124,.2);
+	}
+	.coluna9 {
+		padding-top: 10px;
+		padding-bottom: 10px;
+		background-color: #eee;
+		background-color: #E6FCFF;
+		border: 1px solid #ddd;
+		border: 1px solid rgba(86,61,124,.2);
+	}
+	.coluna10 {
+		padding-top: 10px;
+		padding-bottom: 10px;
+		background-color: #eee;
+		background-color: #FFFFC8;
+		border: 1px solid #ddd;
+		border: 1px solid rgba(86,61,124,.2);
+	}
+</style>
+
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+	<div class="panel panel-default">
+		<div class="panel-heading" role="tab" id="headingOne">
+			<h4 class="panel-title">
+				<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+					<i class="fa fa-calendar" aria-hidden="true"></i>&nbsp;Calendário
+				</a>
+			</h4>
+		</div>
+		<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+			<div class="panel-body"><div id="calendar"></div></div>
+    	</div>
+	</div>
+	<div class="panel panel-default">
+		<div class="panel-heading" role="tab" id="headingTwo">
+			<h4 class="panel-title">
+				<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          			<i class="fas fa-comment-dots"></i>&nbsp;Comunicados Gerais
+				</a>
+			</h4>
+		</div>
+    	<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+			<div class="panel-body">
+				<div class="row">
+                	<div class="col-sm-12">
+                    	<table id="tcomunicados" class="table table-striped table-hover table-bordered fonteTable" width="100%" cellspacing="0"></table>
+                	</div>
+            	</div>
+			</div>
+		</div>
+	</div>
+	<div class="panel panel-default">
+		<div class="panel-heading" role="tab" id="headingThree">
+			<h4 class="panel-title">
+				<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          			<i class="fas fa-clock"></i>&nbsp;Cronograma Comissões
+				</a>
+			</h4>
+		</div>
+		<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+			<div class="panel-body">
+				<h3 align="center">CRONOGRAMA REUNIÕES E COMPOSIÇÃO COMISSÕES PERMANENTES 2018</h3>
+				<div class="row">
+					<div class="col-sm-2 coluna">Dia / Comissão</div>
+					<div class="col-sm-2 coluna1">CCJ</div>
+					<div class="col-sm-2 coluna2">ECONOMIA</div>
+					<div class="col-sm-2 coluna3">SERVIÇO PÚBLICO</div>
+					<div class="col-sm-2 coluna4">URBANISMO</div>
+					<div class="col-sm-2 coluna5">MEIO AMBIENTE</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-2 coluna">SEGUNDA</div>
+					<div class="col-sm-2 coluna1">&nbsp;</div>
+					<div class="col-sm-2 coluna2">&nbsp;</div>
+					<div class="col-sm-2 coluna3">&nbsp;</div>
+					<div class="col-sm-2 coluna4">&nbsp;</div>
+					<div class="col-sm-2 coluna5">15h - Q</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-2 coluna">TERÇA</div>
+					<div class="col-sm-2 coluna1">15h - S</div>
+					<div class="col-sm-2 coluna2">8h - Q</div>
+					<div class="col-sm-2 coluna3">&nbsp;</div>
+					<div class="col-sm-2 coluna4">&nbsp;</div>
+					<div class="col-sm-2 coluna5">&nbsp;</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-2 coluna">QUARTA</div>
+					<div class="col-sm-2 coluna1">&nbsp;</div>
+					<div class="col-sm-2 coluna2">&nbsp;</div>
+					<div class="col-sm-2 coluna3">8h30 - Q</div>
+					<div class="col-sm-2 coluna4">14h30 - Q</div>
+					<div class="col-sm-2 coluna5">&nbsp;</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-2 coluna">Vereadores Integrantes<br/><br/><br/><br/><br/><br/><br/><br/><br/></div>
+					<div class="col-sm-2 coluna1">Dr. Wolmir (P)<br/>Cristiano Santos (VP)<br/>Osias Moraes<br/>Colpani<br/>Felipe Braga Côrtes<br/>Julieta Reis<br/>Marcos Vieira<br/>Mauro Bobato<br/>Noemia Rocha</div>
+					<div class="col-sm-2 coluna2">Thiago Ferro (P)<br/>Mauro Ignácio (VP)<br/>Osias Moraes<br/>Ezequias Barros<br/>Jairo Marcelino<br/>Profª Josete<br/>Prof. Silberto<br/>Paulo Rink<br/>Sabino Picolo</div>
+					<div class="col-sm-2 coluna3">Paulo Rink (P)<br/>Oscalino do Povo (VP)<br/>Profª Josete<br/>Prof. Euler<br/>Tico Kuzma<br/><br/><br/><br/><br/></div>
+					<div class="col-sm-2 coluna4">Hélio Wirbiski (P)<br/>Mauro Bobato (VP)<br/>Goura<br/>Bruno Pessuti<br/>Maria Manfron<br/><br/><br/><br/><br/></div>
+					<div class="col-sm-2 coluna5">Fabiane Rosa (P)<br/>Kátia Dittrich (VP)<br/>Goura<br/>Colpani<br/>Felipe Braga Côrtes<br/><br/><br/><br/><br/></div>
+				</div>
+
+				<div class="row">
+					<div class="col-sm-2 coluna">Dia / Comissão</div>
+					<div class="col-sm-2 coluna6">DIREITOS HUMANOS</div>
+					<div class="col-sm-2 coluna7">EDUCAÇÃO</div>
+					<div class="col-sm-2 coluna8">ACESSIBILIDADE</div>
+					<div class="col-sm-2 coluna9">SAÚDE</div>
+					<div class="col-sm-2 coluna10">PARTICIPAÇÃO LEGISLATIVA</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-2 coluna">SEGUNDA</div>
+					<div class="col-sm-2 coluna6">&nbsp;</div>
+					<div class="col-sm-2 coluna7">&nbsp;</div>
+					<div class="col-sm-2 coluna8">8h30 - Q</div>
+					<div class="col-sm-2 coluna9">&nbsp;</div>
+					<div class="col-sm-2 coluna10">SD</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-2 coluna">TERÇA</div>
+					<div class="col-sm-2 coluna6">8h30 - Q</div>
+					<div class="col-sm-2 coluna7">&nbsp;</div>
+					<div class="col-sm-2 coluna8">&nbsp;</div>
+					<div class="col-sm-2 coluna9">&nbsp;</div>
+					<div class="col-sm-2 coluna10">SD</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-2 coluna">QUARTA</div>
+					<div class="col-sm-2 coluna6">&nbsp;</div>
+					<div class="col-sm-2 coluna7">8h30 - Q</div>
+					<div class="col-sm-2 coluna8">&nbsp;</div>
+					<div class="col-sm-2 coluna9">Após Sessão Plenária - Q</div>
+					<div class="col-sm-2 coluna10">SD</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-2 coluna">Vereadores Integrantes<br/><br/><br/><br/><br/></div>
+					<div class="col-sm-2 coluna6">Rogério Campos (P)<br/>Bruno Pessuti (VP)<br/>Beto Moraes<br/>Cristiano Santos<br/>Zezinho Sabará</div>
+					<div class="col-sm-2 coluna7">Prof. Euler (P)<br/>Geovane Fernandes (VP)<br/>Maria Manfron<br/>Marcos Vieira<br/>Dr. Wolmir</div>
+					<div class="col-sm-2 coluna8">Pier Petruzziello (P)<br/>Oscalino do Povo (VP)<br/>Jairo Marcelino<br/>Tito Zeglin<br/>Dona Lourdes</div>
+					<div class="col-sm-2 coluna9">Maria Letícia (P)<br/>Oscalino do Povo (VP)<br/>Thiago Ferro<br/>Noemia Rocha<br/>Jairo Marcelino</div>
+					<div class="col-sm-2 coluna10">Prof. Euler (P)<br/>Toninho da Farmácia (VP)<br/>Mestre Pop<br/>Dona Lourdes<br/>Cacá Pereira</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12 coluna">Obs: P = Presidente; VP = Vice-Presidente; S = Semanal; Q = Quinzenal; SD = Sob Demanda.</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
 
 {% endblock %}
 
 {% block extra_javascript %}
 
 	<script type="text/javascript">
+
+		var tableComunicados;
+
 		$(function() {
 
 			// page is now ready, initialize the calendar...
@@ -46,7 +270,65 @@
   				},
 			})
 
-			var bola = $('#calendars').fullCalendar('weekends');
+			tableComunicados = $('#tcomunicados').DataTable({
+                responsive: true,
+                "order": [[ 1, "asc" ]],
+                "columns": [
+                    { 
+                        title: "ID" ,
+                        data: 'id'
+                    },
+                    { 
+                        title: "Início",
+                        data: 'inicio'
+                    },
+                    { 
+                        title: "Comunicado",
+                        data: 'descricao'
+                    }
+
+                    
+                ],
+                "columnDefs": [
+                    {
+                        "targets": [0],
+                        "visible": false,
+                        "searchable": false
+                    },
+                    {
+                        "targets": [1],
+                        "visible": false,
+                        "searchable": false
+                    },
+                    {
+                        "targets": [2],
+                        "visible": true,
+                        "searchable": true
+                    },
+                ],
+                "language": {
+                    "info": "Páginas _PAGE_ de _PAGES_",
+                    "emptyTable": "Sem dados para mostrar",
+                    "decimal": ",",
+                    "thousands": ".",
+                    "oPaginate": {
+                        "sFirst": '<span class="glyphicon glyphicon-fast-backward"></span>',
+                        "sLast": '<span class="glyphicon glyphicon-fast-forward"></span>',
+                        "sNext": '<span class="glyphicon glyphicon-forward"></span>',
+                        "sPrevious": '<span class="glyphicon glyphicon-backward"></span>'
+                    }
+                },
+                "deferRender": true,
+                "bPaginate" : true,
+                "bLengthChange": false,
+                "bFilter": true,
+                "bInfo": false,
+                "ajax": {
+                    "url": "/api/get_comunicados/",
+                    "dataSrc": "",
+                },
+                "sDom": '<"top"i>rt<"bottom"lp><"clear">',
+            });
 
 		});
 
