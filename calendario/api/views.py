@@ -201,7 +201,9 @@ def get_calendario_full(request):
 # retorna lista de comunicados
 # -----------------------------------------------------------------------------------
 def get_comunicados(request):
-	comunicados = Comunicado.objects.all().order_by("-inicio")
+	comunicados = Comunicado.objects.filter(fim__gte=datetime.today())
+	comunicados = comunicados.filter(inicio__lte=datetime.today())
+	comunicados = comunicados.order_by("inicio")
 
 	entradas_json = []
 	for c in comunicados:
@@ -210,6 +212,7 @@ def get_comunicados(request):
 		e_json['titulo'] = c.titulo
 		e_json['inicio'] = c.inicio.strftime('%d/%m/%Y')
 		e_json['fim'] = c.fim.strftime('%d/%m/%Y')
+		e_json['descricao'] = c.descricao
 		entradas_json.append(e_json)
 
 	return JsonResponse(entradas_json, safe=False)		
