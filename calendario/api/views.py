@@ -189,9 +189,9 @@ def get_calendario_full(request):
 		e_json['end'] = c.fim
 		e_json['url'] = gera_url(c.id)
 		e_json['title'] = c.evento
-		#e_json['setor'] = c.setor
-		#e_json['pessoa'] = c.pessoa
-		#e_json['eventColor'] = gera_class(c.classe)
+		e_json['setor'] = c.setor
+		e_json['pessoa'] = c.pessoa
+		e_json['eventColor'] = gera_class(c.classe)
 		e_json['color'] = gera_class(c.classe)
 		entradas_json.append(e_json)
 
