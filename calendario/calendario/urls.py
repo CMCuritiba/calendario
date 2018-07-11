@@ -16,4 +16,5 @@ urlpatterns = [
 	path('comunicado/', views.ComunicadoIndex.as_view(), name='comunicado-index'),
 	path('comunicado/novo/', views.ComunicadoCreate.as_view(), name='comunicado-novo'),
 	path('comunicado/altera/<int:pk>/', views.ComunicadoUpdate.as_view(), name='comunicado-altera'),
+	path('full_botao', views.FullCalendarioBotaoIndex.as_view(), name='full-botao_index'),
 ]	

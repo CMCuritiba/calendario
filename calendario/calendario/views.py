@@ -127,3 +127,9 @@ class ComunicadoUpdate(CMCAdminLoginRequired, SuccessMessageMixin, UpdateView):
     success_url = '/calendario/comunicado/'
     success_message = "Comunicado alterado com sucesso"
     template_name = 'calendario/comunicado/update.html'           
+
+#--------------------------------------------------------------------------------------
+#
+#--------------------------------------------------------------------------------------
+class FullCalendarioBotaoIndex(SuccessMessageMixin, TemplateView):
+    template_name = 'calendario/index_full_botao.html'            

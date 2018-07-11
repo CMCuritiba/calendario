@@ -97,7 +97,7 @@ def source_virtualenv():
 @task
 def testa_local():
 	local('clear')
-	result = local("./manage.py test --settings=config.settings.test")
+	result = local("python manage.py test --settings=config.settings.test")
 	if result.failed:
 		print(red("Algum teste falhou", bold=True))
 	else:
@@ -107,7 +107,7 @@ def testa_local():
 def verifica():
 	with cd(PROJECT_ROOT):	
 		with source_virtualenv():
-			run('./manage.py check --settings=config.settings.production')
+			run('python manage.py check --settings=config.settings.production')
 
 @task
 def pull_master():
@@ -198,7 +198,7 @@ def manage_bower():
 	with cd(PROJECT_ROOT):
 		with source_virtualenv():
 			# Roda o bower install
-			run('./manage.py bower_install --settings=config.settings.production')
+			run('python manage.py bower_install --settings=config.settings.production')
 	chown()
 
 @task
@@ -207,7 +207,7 @@ def manage_collectstatic():
 	with cd(PROJECT_ROOT):
 		with source_virtualenv():
 			# Gera todos os arquivos css/js
-			sudo('./manage.py collectstatic --noinput --settings=config.settings.production', user=USERAPP)
+			sudo('python manage.py collectstatic --noinput --settings=config.settings.production', user=USERAPP)
 
 @task
 def git_update():
@@ -246,7 +246,7 @@ def manage_makemigrations():
 	with cd(PROJECT_ROOT):
 		with source_virtualenv():
 			# Roda o bower install
-			run('./manage.py makemigrations --settings=config.settings.production')
+			run('python manage.py makemigrations --settings=config.settings.production')
 			#run('./manage.py makemigrations autentica --settings=config.settings.production')
 			#run('./manage.py makemigrations cadastro --settings=config.settings.production')
 	chown()	
@@ -257,7 +257,7 @@ def manage_migrate():
 	with cd(PROJECT_ROOT):
 		with source_virtualenv():
 			# Roda o bower install
-			run('./manage.py migrate --settings=config.settings.production')
+			run('python manage.py migrate --settings=config.settings.production')
 			#run('./manage.py migrate autentica --settings=config.settings.production')
 			#run('./manage.py migrate cadastro --settings=config.settings.production')
 	chown()		
