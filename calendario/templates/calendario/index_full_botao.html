@@ -122,7 +122,7 @@
 
 		<div class="collapse indent" id="espaco-calendario">
 			<br/>
-			<div id="calendar"></div>
+			<div id="calendar" style="background-color:#f3f3f3;padding:30px;"></div>
 		</div>
 
 		<div class="collapse" id="espaco-cronograma">
@@ -238,6 +238,7 @@
 				locale: 'br',
 				firstDay: 1,
 				themeSystem: 'bootstrap4',
+				theme: true,
 				timeFormat: 'hh:mm',
 				weekends: false,
 				columnHeader: true,
@@ -266,8 +267,11 @@
     				}
   				},
   				/*
-  				eventRender: function(event, element) {
+  				eventRender: function(event, element, view) {
+  					var dateString = event.start.format("DD/MM/YYYY");
+  					$(view.el[0]).find('.fc-day[data-date=' + dateString + ']').css('background-color', '#FAA732');
   				},
+  				
   				eventAfterRender: function(event, element, view) {
   					console.log(event);
   				},
