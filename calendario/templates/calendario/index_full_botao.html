@@ -266,16 +266,22 @@
       					return false;
     				}
   				},
-  				/*
   				eventRender: function(event, element, view) {
-  					var dateString = event.start.format("DD/MM/YYYY");
-  					$(view.el[0]).find('.fc-day[data-date=' + dateString + ']').css('background-color', '#FAA732');
+  					var title = element.find( '.fc-title' );
+  					var inicio = moment(event.start).startOf('day');
+  					var fim = moment(event.end).startOf('day');
+  					var diferenca = moment(fim.diff(inicio));
+  					if (diferenca == 0) {
+  						element.css('background-color', '#eee');
+  						element.css('border-color', '#eee');
+  						element.css('color', '#668cd9');
+  					}
+  					else {
+  						element.css('border-color', '#668cd9');
+  						element.css('background-color', '#668cd9');
+  						element.css('color', '#fff');
+  					}
   				},
-  				
-  				eventAfterRender: function(event, element, view) {
-  					console.log(event);
-  				},
-  				*/
 			})
 
 			tableComunicados = $('#tcomunicados').DataTable({

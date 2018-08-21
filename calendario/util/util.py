@@ -14,6 +14,7 @@ def gera_class(classe):
 	elif classe == 'FERIADO':
 		#return 'event-inverse'		
 		return '#e6b800'
+		#return '#eee'
 	elif classe == 'SUCESSO':
 		#return 'event-success'
 		return '#298A08'
@@ -31,6 +32,8 @@ def gera_status(status):
 		return 'ATIVO'
 	elif status == 'I':
 		return 'INATIVO'
+	elif status == 'C':
+		return 'CANCELADO'		
 	else:
 		return ''
 
