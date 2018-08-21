@@ -59,6 +59,26 @@ class EventoFormTest(TestCase):
     	form = EventoForm(form_data)
     	self.assertFalse(form.is_valid())
 
+    def test_inclui_status_ativo(self):
+        form_data = {'evento': "Palestra de Avezismo", 'url':"http://www.cmc.pr.gov.br", 'classe':"ESPECIAL", 'inicio':datetime(2018, 8,30, 9,0), 'fim':datetime(2018, 8,30, 17,0), 'local':1, 'descricao':"Palestra na CMC sobre Zacarianismo",'status':"A"}
+        form = EventoForm(form_data)
+        self.assertTrue(form.is_valid())        
+
+    def test_inclui_status_inativo(self):
+        form_data = {'evento': "Palestra de Avezismo", 'url':"http://www.cmc.pr.gov.br", 'classe':"ESPECIAL", 'inicio':datetime(2018, 8,30, 9,0), 'fim':datetime(2018, 8,30, 17,0), 'local':1, 'descricao':"Palestra na CMC sobre Zacarianismo",'status':'I'}
+        form = EventoForm(form_data)
+        self.assertTrue(form.is_valid())                
+
+    def test_inclui_status_cancelado(self):
+        form_data = {'evento': "Palestra de Avezismo", 'url':"http://www.cmc.pr.gov.br", 'classe':"ESPECIAL", 'inicio':datetime(2018, 8,30, 9,0), 'fim':datetime(2018, 8,30, 17,0), 'local':1, 'descricao':"Palestra na CMC sobre Zacarianismo",'status':'C'}
+        form = EventoForm(form_data)
+        self.assertTrue(form.is_valid())        
+
+    def test_inclui_status_invalido(self):
+        form_data = {'evento': "Palestra de Avezismo", 'url':"http://www.cmc.pr.gov.br", 'classe':"ESPECIAL", 'inicio':datetime(2018, 8,30, 9,0), 'fim':datetime(2018, 8,30, 17,0), 'local':1, 'descricao':"Palestra na CMC sobre Zacarianismo",'status':'X'}
+        form = EventoForm(form_data)
+        self.assertFalse(form.is_valid())                
+
 #--------------------------------------------------------------------------------------
 # Teste form comunicado
 #--------------------------------------------------------------------------------------
