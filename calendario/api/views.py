@@ -179,7 +179,7 @@ def call_evento_exclui(request):
 # retorna eventos para popular calendário full
 # -----------------------------------------------------------------------------------
 def get_calendario_full(request):
-	entradas = Evento.objects.filter(status='A')
+	entradas = Evento.objects.exclude(status='I')
 
 	entradas_json = []
 	for c in entradas:
@@ -188,7 +188,10 @@ def get_calendario_full(request):
 		e_json['start'] = c.inicio
 		e_json['end'] = c.fim
 		e_json['url'] = gera_url(c.id)
-		e_json['title'] = c.evento
+		if c.status == 'C':
+			e_json['title'] = 'CANCELADO - ' + c.evento
+		else:
+			e_json['title'] = c.evento
 		e_json['setor'] = c.setor
 		e_json['pessoa'] = c.pessoa
 		e_json['eventColor'] = gera_class(c.classe)

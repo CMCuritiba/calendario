@@ -61,9 +61,11 @@ class Evento(models.Model):
 
 	STATUS_ATIVO = 'A'
 	STATUS_INATIVO = 'I'
+	STATUS_CANCELADO = 'C'
 	STATUS_CHOICES = (
 		(STATUS_ATIVO, 'ATIVO'),
-		(STATUS_INATIVO, 'INATIVO')
+		(STATUS_INATIVO, 'INATIVO'),
+		(STATUS_CANCELADO, 'CANCELADO')
 	)
 
 	evento = models.CharField(max_length=300)

@@ -106,6 +106,7 @@ class EventoModelTest(TestCase):
 		with self.assertRaises(IntegrityError):
 			evento = EventoFactory.create()
 
+	
 #--------------------------------------------------------------------------------------
 # Testes model comunicado
 #--------------------------------------------------------------------------------------
