@@ -271,7 +271,8 @@
   					var inicio = moment(event.start).startOf('day');
   					var fim = moment(event.end).startOf('day');
   					var diferenca = moment(fim.diff(inicio));
-  					if (diferenca == 0) {
+  					console.log(diferenca);
+  					if (diferenca == 0 || isNaN(diferenca)) {
   						element.css('background-color', '#eee');
   						element.css('border-color', '#eee');
   						element.css('color', '#668cd9');
