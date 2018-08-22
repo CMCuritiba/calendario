@@ -196,6 +196,11 @@ def get_calendario_full(request):
 		e_json['pessoa'] = c.pessoa
 		e_json['eventColor'] = gera_class(c.classe)
 		e_json['color'] = gera_class(c.classe)
+		e_json['descricao'] = c.descricao
+		if (c.local != None):
+			e_json['local'] = c.local.local
+		else:
+			e_json['local'] = ''
 		entradas_json.append(e_json)
 
 
@@ -236,3 +241,4 @@ def call_comunicado_exclui(request):
 				comunicado.delete()
 				response = JsonResponse({'status':'true','message':'Comunicado excluído com sucesso'}, status=200)
 	return response			
+
