@@ -215,6 +215,23 @@
 	</div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="eventoInfoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLabel"><span id="evento_evento" name="evento_evento"/></h4>
+      </div>
+      <div class="modal-body">
+        <h5><b>Início</b><br/> <span id="evento_inicio" name="evento_inicio"/></h5>
+        <h5><b>Fim</b><br/> <span id="evento_fim" name="evento_fim"/></h5>
+        <h5><span id="evento_local" name="evento_local"/></h5>
+        <h5><span id="evento_descricao" name="evento_descricao"/></h5>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 {% endblock %}
 
@@ -242,6 +259,7 @@
 				timeFormat: 'hh:mm',
 				weekends: false,
 				columnHeader: true,
+				allDayDefault: false,
 				header: { 
 					left: 'prev,next,today',
 					center: 'title',
@@ -260,18 +278,32 @@
           				console.log('ERRO AO ACESSAR API LISTA EVENTOS CALENDÁRIO');
         			}
 				},
-				eventClick: function(event) {
-    				if (event.url) {
-      					window.open(event.url, 'w_evento');
-      					return false;
-    				}
+
+  				eventClick:  function(event, jsEvent, view) {
+  					var inicio = moment(event.start).format("DD/MM/YYYY - HH:mm");
+  					var fim;
+  					if(event.end == null) {
+  						fim = moment(event.start).format("DD/MM/YYYY - HH:mm");
+  					}
+  					else {
+  						fim = moment(event.end).format("DD/MM/YYYY - HH:mm");	
+  					}
+  					$('#evento_inicio').html(inicio);
+  					$('#evento_fim').html(fim);
+  					$('#evento_evento').html(event.title);
+  					if (event.local != '')
+  						$('#evento_local').html("<b>Local</b><br/>" + event.local);
+  					$('#evento_descricao').html(event.descricao);
+  					$('#eventoInfoModal').modal();
   				},
+
   				eventRender: function(event, element, view) {
+  					element.attr('href', 'javascript:void(0);');
+
   					var title = element.find( '.fc-title' );
   					var inicio = moment(event.start).startOf('day');
   					var fim = moment(event.end).startOf('day');
   					var diferenca = moment(fim.diff(inicio));
-  					console.log(diferenca);
   					if (diferenca == 0 || isNaN(diferenca)) {
   						element.css('background-color', '#eee');
   						element.css('border-color', '#eee');

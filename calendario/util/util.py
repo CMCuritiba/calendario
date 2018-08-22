@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 
 def gera_url(id):
-	URL = '/calendario/evento/detalhe/'
-	return URL + str(id)
+	#URL = '/calendario/evento/detalhe/'
+	#URL = 'geraDetalhe('
+	#return URL + str(id) + ');'
+	return str(id)
 
 def gera_class(classe):
 	if classe == 'IMPORTANTE':
