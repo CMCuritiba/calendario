@@ -195,6 +195,10 @@ def get_calendario_full(request):
 		e_json['setor'] = c.setor
 		e_json['pessoa'] = c.pessoa
 		e_json['eventColor'] = gera_class(c.classe)
+		if c.classe == 'FERIADO':
+			e_json['allDay'] = True
+		else:
+			e_json['allDay'] = False
 		e_json['color'] = gera_class(c.classe)
 		e_json['descricao'] = c.descricao
 		if (c.local != None):
