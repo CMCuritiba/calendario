@@ -304,7 +304,12 @@
   					var inicio = moment(event.start).startOf('day');
   					var fim = moment(event.end).startOf('day');
   					var diferenca = moment(fim.diff(inicio));
-  					if (diferenca == 0 || isNaN(diferenca)) {
+  					if (event.allDay) {
+  						element.css('border-color', '#668cd9');
+  						element.css('background-color', '#668cd9');
+  						element.css('color', '#fff');
+  					}
+  					else if ((diferenca == 0 || isNaN(diferenca))) {
   						element.css('background-color', '#eee');
   						element.css('border-color', '#eee');
   						element.css('color', '#668cd9');
