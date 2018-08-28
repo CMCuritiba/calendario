@@ -205,7 +205,7 @@
                         "className": "dt-center",
                         "data": null,
                         render: function(data, type, full, meta) {
-                            if (full.status == 'ATIVO') {
+                            if (full.status == 'ATIVO') || (full.status == 'CANCELADO') {
                                 return '<a href="" data-toggle="modal" data-target="#confirmaModal" data-evento_id="' + full.id + '" data-evento_evento="' + full.evento + '" data-evento_inicio="' + full.inicio + '" data-evento_fim="' + full.fim + '"><i class="far fa-trash-alt" aria-hidden="true" style="color:Tomato;" title="Exclui Evento"></i></a>';
                             }
                             else {
