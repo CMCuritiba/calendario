@@ -351,7 +351,7 @@ STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
 BOWER_COMPONENTS_ROOT = str(ROOT_DIR.path('components'))
 BOWER_INSTALLED_APPS = (
     'jquery#1.9.1',
-    #'jquery',
+    #'jquery#3.3.1',
     'underscore',
     'bootstrap',
     #'bootstrap-calendar',
