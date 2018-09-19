@@ -7,7 +7,10 @@
 
 <style type="text/css">
 
-	.fc-body .fc-row { min-height: 145px; }
+	#espaco-calendario { display: none; }
+	#espaco-comunicados { display: none; }
+	#espaco-cronograma { display: none; }
+
 
 	.coluna {
 		padding-top: 10px;
@@ -104,115 +107,113 @@
 </div>
 <br/>
 <div id="grupo">
-	<button class="btn btn-primary" data-toggle="collapse" data-target="#espaco-calendario" data-parent="#grupo">
+	<button class="btn btn-primary" type="button" id="btn_agenda">
 	  Agenda
 	</button>
 
-	<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#espaco-comunicados" data-parent="#grupo">
+	<button class="btn btn-primary" type="button" id="btn_comunicado">
 	  Comunicados Gerais
 	</button>
 
-	<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#espaco-cronograma" data-parent="#grupo">
+	<button class="btn btn-primary" type="button" id="btn_cronograma">
 	  Cronograma das Comissões
 	</button>
-	<div class="accordion-group">
 
-		<div class="collapse indent" id="espaco-comunicados">
-			<h3 align="center">COMUNICADOS GERAIS</h3>
-			<table id="tcomunicados" class="table table-striped table-hover table-bordered fonteTable" width="100%" cellspacing="0"></table>
+	<div id="espaco-calendario">
+		<br/>
+		<div id="calendar" style="background-color:#f3f3f3;padding:30px;"></div>
+	</div>
+
+	<div id="espaco-comunicados">
+		<h3 align="center">COMUNICADOS GERAIS</h3>
+		<table id="tcomunicados" class="table table-striped table-hover table-bordered fonteTable" width="100%" cellspacing="0"></table>
+	</div>
+
+	<div id="espaco-cronograma">
+		<h3 align="center">CRONOGRAMA REUNIÕES E COMPOSIÇÃO COMISSÕES PERMANENTES 2018</h3>
+		<div class="row">
+			<div class="col-sm-2 coluna">Dia / Comissão</div>
+			<div class="col-sm-2 coluna1">CCJ</div>
+			<div class="col-sm-2 coluna2">ECONOMIA</div>
+			<div class="col-sm-2 coluna3">SERVIÇO PÚBLICO</div>
+			<div class="col-sm-2 coluna4">URBANISMO</div>
+			<div class="col-sm-2 coluna5">MEIO AMBIENTE</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2 coluna">SEGUNDA</div>
+			<div class="col-sm-2 coluna1">&nbsp;</div>
+			<div class="col-sm-2 coluna2">&nbsp;</div>
+			<div class="col-sm-2 coluna3">&nbsp;</div>
+			<div class="col-sm-2 coluna4">&nbsp;</div>
+			<div class="col-sm-2 coluna5">15h - Q</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2 coluna">TERÇA</div>
+			<div class="col-sm-2 coluna1">15h - S</div>
+			<div class="col-sm-2 coluna2">8h - Q</div>
+			<div class="col-sm-2 coluna3">&nbsp;</div>
+			<div class="col-sm-2 coluna4">&nbsp;</div>
+			<div class="col-sm-2 coluna5">&nbsp;</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2 coluna">QUARTA</div>
+			<div class="col-sm-2 coluna1">&nbsp;</div>
+			<div class="col-sm-2 coluna2">&nbsp;</div>
+			<div class="col-sm-2 coluna3">8h30 - Q</div>
+			<div class="col-sm-2 coluna4">14h30 - Q</div>
+			<div class="col-sm-2 coluna5">&nbsp;</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2 coluna">Vereadores Integrantes<br/><br/><br/><br/><br/><br/><br/><br/><br/></div>
+			<div class="col-sm-2 coluna1">Dr. Wolmir (P)<br/>Cristiano Santos (VP)<br/>Osias Moraes<br/>Colpani<br/>Felipe Braga Côrtes<br/>Julieta Reis<br/>Marcos Vieira<br/>Mauro Bobato<br/>Noemia Rocha</div>
+			<div class="col-sm-2 coluna2">Thiago Ferro (P)<br/>Mauro Ignácio (VP)<br/>Osias Moraes<br/>Ezequias Barros<br/>Jairo Marcelino<br/>Profª Josete<br/>Prof. Silberto<br/>Paulo Rink<br/>Sabino Picolo</div>
+			<div class="col-sm-2 coluna3">Paulo Rink (P)<br/>Oscalino do Povo (VP)<br/>Profª Josete<br/>Prof. Euler<br/>Tico Kuzma<br/><br/><br/><br/><br/></div>
+			<div class="col-sm-2 coluna4">Hélio Wirbiski (P)<br/>Mauro Bobato (VP)<br/>Goura<br/>Bruno Pessuti<br/>Maria Manfron<br/><br/><br/><br/><br/></div>
+			<div class="col-sm-2 coluna5">Fabiane Rosa (P)<br/>Kátia Dittrich (VP)<br/>Goura<br/>Colpani<br/>Felipe Braga Côrtes<br/><br/><br/><br/><br/></div>
 		</div>
 
-		<div class="collapse indent" id="espaco-calendario">
-			<br/>
-			<div id="calendar" style="background-color:#f3f3f3;padding:30px;"></div>
+		<div class="row">
+			<div class="col-sm-2 coluna">Dia / Comissão</div>
+			<div class="col-sm-2 coluna6">DIREITOS HUMANOS</div>
+			<div class="col-sm-2 coluna7">EDUCAÇÃO</div>
+			<div class="col-sm-2 coluna8">ACESSIBILIDADE</div>
+			<div class="col-sm-2 coluna9">SAÚDE</div>
+			<div class="col-sm-2 coluna10">PARTICIPAÇÃO LEGISLATIVA</div>
 		</div>
-
-		<div class="collapse" id="espaco-cronograma">
-			<h3 align="center">CRONOGRAMA REUNIÕES E COMPOSIÇÃO COMISSÕES PERMANENTES 2018</h3>
-			<div class="row">
-				<div class="col-sm-2 coluna">Dia / Comissão</div>
-				<div class="col-sm-2 coluna1">CCJ</div>
-				<div class="col-sm-2 coluna2">ECONOMIA</div>
-				<div class="col-sm-2 coluna3">SERVIÇO PÚBLICO</div>
-				<div class="col-sm-2 coluna4">URBANISMO</div>
-				<div class="col-sm-2 coluna5">MEIO AMBIENTE</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-2 coluna">SEGUNDA</div>
-				<div class="col-sm-2 coluna1">&nbsp;</div>
-				<div class="col-sm-2 coluna2">&nbsp;</div>
-				<div class="col-sm-2 coluna3">&nbsp;</div>
-				<div class="col-sm-2 coluna4">&nbsp;</div>
-				<div class="col-sm-2 coluna5">15h - Q</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-2 coluna">TERÇA</div>
-				<div class="col-sm-2 coluna1">15h - S</div>
-				<div class="col-sm-2 coluna2">8h - Q</div>
-				<div class="col-sm-2 coluna3">&nbsp;</div>
-				<div class="col-sm-2 coluna4">&nbsp;</div>
-				<div class="col-sm-2 coluna5">&nbsp;</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-2 coluna">QUARTA</div>
-				<div class="col-sm-2 coluna1">&nbsp;</div>
-				<div class="col-sm-2 coluna2">&nbsp;</div>
-				<div class="col-sm-2 coluna3">8h30 - Q</div>
-				<div class="col-sm-2 coluna4">14h30 - Q</div>
-				<div class="col-sm-2 coluna5">&nbsp;</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-2 coluna">Vereadores Integrantes<br/><br/><br/><br/><br/><br/><br/><br/><br/></div>
-				<div class="col-sm-2 coluna1">Dr. Wolmir (P)<br/>Cristiano Santos (VP)<br/>Osias Moraes<br/>Colpani<br/>Felipe Braga Côrtes<br/>Julieta Reis<br/>Marcos Vieira<br/>Mauro Bobato<br/>Noemia Rocha</div>
-				<div class="col-sm-2 coluna2">Thiago Ferro (P)<br/>Mauro Ignácio (VP)<br/>Osias Moraes<br/>Ezequias Barros<br/>Jairo Marcelino<br/>Profª Josete<br/>Prof. Silberto<br/>Paulo Rink<br/>Sabino Picolo</div>
-				<div class="col-sm-2 coluna3">Paulo Rink (P)<br/>Oscalino do Povo (VP)<br/>Profª Josete<br/>Prof. Euler<br/>Tico Kuzma<br/><br/><br/><br/><br/></div>
-				<div class="col-sm-2 coluna4">Hélio Wirbiski (P)<br/>Mauro Bobato (VP)<br/>Goura<br/>Bruno Pessuti<br/>Maria Manfron<br/><br/><br/><br/><br/></div>
-				<div class="col-sm-2 coluna5">Fabiane Rosa (P)<br/>Kátia Dittrich (VP)<br/>Goura<br/>Colpani<br/>Felipe Braga Côrtes<br/><br/><br/><br/><br/></div>
-			</div>
-
-			<div class="row">
-				<div class="col-sm-2 coluna">Dia / Comissão</div>
-				<div class="col-sm-2 coluna6">DIREITOS HUMANOS</div>
-				<div class="col-sm-2 coluna7">EDUCAÇÃO</div>
-				<div class="col-sm-2 coluna8">ACESSIBILIDADE</div>
-				<div class="col-sm-2 coluna9">SAÚDE</div>
-				<div class="col-sm-2 coluna10">PARTICIPAÇÃO LEGISLATIVA</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-2 coluna">SEGUNDA</div>
-				<div class="col-sm-2 coluna6">&nbsp;</div>
-				<div class="col-sm-2 coluna7">&nbsp;</div>
-				<div class="col-sm-2 coluna8">8h45 - Q</div>
-				<div class="col-sm-2 coluna9">&nbsp;</div>
-				<div class="col-sm-2 coluna10">SD</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-2 coluna">TERÇA</div>
-				<div class="col-sm-2 coluna6">8h30 - Q</div>
-				<div class="col-sm-2 coluna7">&nbsp;</div>
-				<div class="col-sm-2 coluna8">&nbsp;</div>
-				<div class="col-sm-2 coluna9">&nbsp;</div>
-				<div class="col-sm-2 coluna10">SD</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-2 coluna">QUARTA</div>
-				<div class="col-sm-2 coluna6">&nbsp;</div>
-				<div class="col-sm-2 coluna7">8h30 - Q</div>
-				<div class="col-sm-2 coluna8">&nbsp;</div>
-				<div class="col-sm-2 coluna9">Após Sessão Plenária - Q</div>
-				<div class="col-sm-2 coluna10">SD</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-2 coluna">Vereadores Integrantes<br/><br/><br/><br/><br/></div>
-				<div class="col-sm-2 coluna6">Rogério Campos (P)<br/>Bruno Pessuti (VP)<br/>Beto Moraes<br/>Cristiano Santos<br/>Zezinho Sabará</div>
-				<div class="col-sm-2 coluna7">Prof. Euler (P)<br/>Geovane Fernandes (VP)<br/>Maria Manfron<br/>Marcos Vieira<br/>Dr. Wolmir</div>
-				<div class="col-sm-2 coluna8">Pier Petruzziello (P)<br/>Oscalino do Povo (VP)<br/>Jairo Marcelino<br/>Tito Zeglin<br/>Dona Lourdes</div>
-				<div class="col-sm-2 coluna9">Maria Letícia (P)<br/>Oscalino do Povo (VP)<br/>Thiago Ferro<br/>Noemia Rocha<br/>Jairo Marcelino</div>
-				<div class="col-sm-2 coluna10">Prof. Euler (P)<br/>Toninho da Farmácia (VP)<br/>Mestre Pop<br/>Dona Lourdes<br/>Chicarelli</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-12 coluna">Obs: P = Presidente; VP = Vice-Presidente; S = Semanal; Q = Quinzenal; SD = Sob Demanda.</div>
-			</div>
+		<div class="row">
+			<div class="col-sm-2 coluna">SEGUNDA</div>
+			<div class="col-sm-2 coluna6">&nbsp;</div>
+			<div class="col-sm-2 coluna7">&nbsp;</div>
+			<div class="col-sm-2 coluna8">8h45 - Q</div>
+			<div class="col-sm-2 coluna9">&nbsp;</div>
+			<div class="col-sm-2 coluna10">SD</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2 coluna">TERÇA</div>
+			<div class="col-sm-2 coluna6">8h30 - Q</div>
+			<div class="col-sm-2 coluna7">&nbsp;</div>
+			<div class="col-sm-2 coluna8">&nbsp;</div>
+			<div class="col-sm-2 coluna9">&nbsp;</div>
+			<div class="col-sm-2 coluna10">SD</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2 coluna">QUARTA</div>
+			<div class="col-sm-2 coluna6">&nbsp;</div>
+			<div class="col-sm-2 coluna7">8h30 - Q</div>
+			<div class="col-sm-2 coluna8">&nbsp;</div>
+			<div class="col-sm-2 coluna9">Após Sessão Plenária - Q</div>
+			<div class="col-sm-2 coluna10">SD</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2 coluna">Vereadores Integrantes<br/><br/><br/><br/><br/></div>
+			<div class="col-sm-2 coluna6">Rogério Campos (P)<br/>Bruno Pessuti (VP)<br/>Beto Moraes<br/>Cristiano Santos<br/>Zezinho Sabará</div>
+			<div class="col-sm-2 coluna7">Prof. Euler (P)<br/>Geovane Fernandes (VP)<br/>Maria Manfron<br/>Marcos Vieira<br/>Dr. Wolmir</div>
+			<div class="col-sm-2 coluna8">Pier Petruzziello (P)<br/>Oscalino do Povo (VP)<br/>Jairo Marcelino<br/>Tito Zeglin<br/>Dona Lourdes</div>
+			<div class="col-sm-2 coluna9">Maria Letícia (P)<br/>Oscalino do Povo (VP)<br/>Thiago Ferro<br/>Noemia Rocha<br/>Jairo Marcelino</div>
+			<div class="col-sm-2 coluna10">Prof. Euler (P)<br/>Toninho da Farmácia (VP)<br/>Mestre Pop<br/>Dona Lourdes<br/>Chicarelli</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12 coluna">Obs: P = Presidente; VP = Vice-Presidente; S = Semanal; Q = Quinzenal; SD = Sob Demanda.</div>
 		</div>
 	</div>
 </div>
@@ -241,14 +242,25 @@
 
 	<script type="text/javascript">
 
-
 		var tableComunicados;
 
 		$(function() {
-			
 
-			jQuery('button').click( function(e) {
-    			jQuery('.collapse').collapse('hide');
+			$('#btn_agenda').click( function(e) {
+				$('#espaco-calendario').show();
+				$("#calendar").fullCalendar('render');
+    			$('#espaco-comunicados').hide();
+    			$('#espaco-cronograma').hide();
+			});
+			$('#btn_comunicado').click( function(e) {
+    			$('#espaco-calendario').hide();
+    			$('#espaco-comunicados').show();
+    			$('#espaco-cronograma').hide();
+			});
+			$('#btn_cronograma').click( function(e) {
+    			$('#espaco-calendario').hide();
+    			$('#espaco-comunicados').hide();
+    			$('#espaco-cronograma').show();
 			});
 
 			// page is now ready, initialize the calendar...
@@ -262,7 +274,7 @@
 				weekends: false,
 				columnHeader: true,
 				allDayDefault: false,
-				aspectRatio: 4.0,
+				aspectRatio: 2.5,
 				header: { 
 					left: 'prev,next,today',
 					center: 'title',
@@ -325,6 +337,7 @@
   				},
 			})
 
+
 			tableComunicados = $('#tcomunicados').DataTable({
                 responsive: true,
                 "order": [[ 1, "asc" ]],
@@ -384,7 +397,6 @@
                 },
                 "sDom": '<"top"i>rt<"bottom"lp><"clear">',
             });
-
 		});
 
 	</script>
