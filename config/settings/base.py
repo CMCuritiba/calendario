@@ -342,8 +342,8 @@ PIPELINE = {
     }
 }
 
-STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
-#STATICFILES_STORAGE = 'django_pipeline_forgiving.storages.PipelineForgivingStorage'
+#STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
+STATICFILES_STORAGE = 'django_pipeline_forgiving.storages.PipelineForgivingStorage'
 
 # BOWER
 # ------------------------------------------------------------------------------
@@ -353,7 +353,7 @@ BOWER_INSTALLED_APPS = (
     'jquery#1.9.1',
     #'jquery#3.3.1',
     'underscore',
-    'bootstrap',
+    'bootstrap#3',
     #'bootstrap-calendar',
     #'jasny-bootstrap',
     'datatables',
