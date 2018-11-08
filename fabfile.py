@@ -279,3 +279,26 @@ def update_autenticacao():
 			#run('./manage.py makemigrations autentica --settings=config.settings.production')
 			#run('./manage.py makemigrations cadastro --settings=config.settings.production')
 	chown()		
+
+
+@task
+def update_pip():
+	des_chown()
+	with cd(PROJECT_ROOT):
+		with source_virtualenv():
+			# Roda o bower install
+			sudo('pip install --upgrade pip')
+			sudo('pip install -r requirements/production.txt')	
+	chown()		
+
+@task
+def update_consumer():
+	des_chown()
+	with cd(PROJECT_ROOT):
+		with source_virtualenv():
+			# Roda o bower install
+			sudo('pip install https://github.com/CMCuritiba/django-cmc-consumer/blob/master/dist/django-cmc-consumer-0.2.tar.gz?raw=true --upgrade --no-cache-dir')
+			#run('python manage.py makemigrations votacao --settings=config.settings.production')
+			#run('./manage.py makemigrations autentica --settings=config.settings.production')
+			#run('./manage.py makemigrations cadastro --settings=config.settings.production')
+	chown()		
