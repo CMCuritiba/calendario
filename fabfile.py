@@ -163,8 +163,8 @@ def bootstrap():
 	sudo('npm install -g bower')
 
 	#instalar bibliotecas do libreoffice para geracao de documentos
-	sudo('apt-get install libreoffice-core')
-	sudo('apt-get install libreoffice-writer')
+	#sudo('apt-get install libreoffice-core')
+	#sudo('apt-get install libreoffice-writer')
 
 	# biblioteca de linguagens
 	sudo('apt-get install enchant')
@@ -229,7 +229,6 @@ def cria_links():
 	if env.environment == 'staging' or env.environment == 'production':
 		sudo('ln -sf {}/deploy/{}/supervisor.conf /etc/supervisor/conf.d/calendario.conf'.format(PROJECT_ROOT,env.environment))
 		sudo('ln -sf {}/deploy/{}/nginx.conf /etc/nginx/sites-enabled/calendario'.format(PROJECT_ROOT,env.environment))
-		sudo('chmod a+x {}/deploy/{}/bootstrap.sh'.format(PROJECT_ROOT,env.environment))
 		sudo('chmod a+x {}/deploy/{}/run.sh'.format(PROJECT_ROOT,env.environment))
 	else:
 		print('Nenhum ambiente selecionado. Defina staging ou production.')
@@ -247,6 +246,7 @@ def manage_makemigrations():
 		with source_virtualenv():
 			# Roda o bower install
 			run('python manage.py makemigrations --settings=config.settings.production')
+			run('python manage.py makemigrations calendario --settings=config.settings.production')
 			#run('./manage.py makemigrations autentica --settings=config.settings.production')
 			#run('./manage.py makemigrations cadastro --settings=config.settings.production')
 	chown()	
