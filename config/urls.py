@@ -14,7 +14,7 @@ urlpatterns = [
     re_path(settings.ADMIN_URL, admin.site.urls),
     re_path(r'^autentica/', include('autentica.urls')),
     re_path(r'^api/', include('calendario.api.urls')),
-    re_path(r'^calendario/', include('calendario.calendario.urls')),
+    re_path(r'^', include('calendario.calendario.urls')),
     re_path(r'^tinymce/', include('tinymce.urls')),
 
 
