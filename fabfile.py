@@ -309,8 +309,8 @@ def update_others():
 	with cd(PROJECT_ROOT):
 		with source_virtualenv():
 			# Roda o bower install
-			sudo('pip install django-tinymce==2.7.0')
-			
+			sudo('pip uninstall django-tinymce4-lite --no-cache-dir')
+			sudo('pip install django-tinymce4-lite --no-cache-dir')
 			#run('python manage.py makemigrations votacao --settings=config.settings.production')
 			#run('./manage.py makemigrations autentica --settings=config.settings.production')
 			#run('./manage.py makemigrations cadastro --settings=config.settings.production')
