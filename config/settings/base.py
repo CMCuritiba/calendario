@@ -189,7 +189,7 @@ TEMPLATES = [
 ]
 
 # See: http://django-crispy-forms.readthedocs.io/en/latest/install.html#template-packs
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 # STATIC FILE CONFIGURATION
 # ------------------------------------------------------------------------------
@@ -301,7 +301,7 @@ PIPELINE = {
     'STYLESHEETS': {
         'master': {
             'source_filenames': (
-              'bootstrap/dist/css/bootstrap.css',
+              'bootstrap/dist/css/bootstrap.min.css',
               #'bootstrap-calendar/css/calendar.min.css',
               'bootstrap-datepicker/dist/css/bootstrap-datepicker3.css',
               'datatables/media/css/jquery.dataTables.css',
@@ -342,8 +342,8 @@ PIPELINE = {
     }
 }
 
-#STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
-STATICFILES_STORAGE = 'django_pipeline_forgiving.storages.PipelineForgivingStorage'
+STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
+#STATICFILES_STORAGE = 'django_pipeline_forgiving.storages.PipelineForgivingStorage'
 
 # BOWER
 # ------------------------------------------------------------------------------
