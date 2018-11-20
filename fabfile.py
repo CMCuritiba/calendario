@@ -302,3 +302,18 @@ def update_consumer():
 			#run('./manage.py makemigrations autentica --settings=config.settings.production')
 			#run('./manage.py makemigrations cadastro --settings=config.settings.production')
 	chown()		
+
+@task
+def update_others():
+	des_chown()
+	with cd(PROJECT_ROOT):
+		with source_virtualenv():
+			# Roda o bower install
+			sudo('pip install django-tinymce==2.7.0')
+			
+			#run('python manage.py makemigrations votacao --settings=config.settings.production')
+			#run('./manage.py makemigrations autentica --settings=config.settings.production')
+			#run('./manage.py makemigrations cadastro --settings=config.settings.production')
+	chown()			
+
+
