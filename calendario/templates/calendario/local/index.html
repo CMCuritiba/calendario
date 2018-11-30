@@ -90,14 +90,14 @@
                         title: "Local",
                         data: 'local',
                         render: function(data, type, full, meta) {
-                            return '<a href="/calendario/local/altera/' + full.id + '">' + data + '</a>';
+                            return '<a href="/local/altera/' + full.id + '">' + data + '</a>';
                         }
                     },
                     { 
                         title: "Status",
                         data: 'status',
                         render: function(data, type, full, meta) {
-                            return '<a href="/calendario/local/altera/' + full.id + '">' + data + '</a>';
+                            return '<a href="/local/altera/' + full.id + '">' + data + '</a>';
                         }
                     }
 
@@ -175,7 +175,7 @@
 
 
         function criaLocal() {
-            location.href = '/calendario/local/novo/';
+            location.href = '/local/novo/';
         }
 
         function exclui() {

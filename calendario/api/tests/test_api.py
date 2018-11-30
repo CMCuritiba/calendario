@@ -64,7 +64,7 @@ class JSONCalendarioTest(TestCase):
 		evento = EventoFactory.create()
 		response = self.client.get('/api/get_calendario/', follow=True, pk=1)
 		data = json.loads(response.content.decode('utf-8'))
-		self.assertEqual(data['result'][0]['url'], '/calendario/evento/detalhe/1')
+		self.assertEqual(data['result'][0]['url'], '1')
 
 	def test_setor(self):
 		evento = EventoFactory.create()
@@ -178,4 +178,3 @@ class JSONCallSecureComunicadoExcluiTest(TestCase):
 		)
 
 		self.assertEqual(response.status_code, 200)
-		

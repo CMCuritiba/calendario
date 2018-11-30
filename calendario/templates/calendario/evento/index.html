@@ -137,28 +137,28 @@
                         title: "Evento",
                         data: 'evento',
                         render: function(data, type, full, meta) {
-                            return '<a href="/calendario/evento/altera/' + full.id + '">' + data + '</a>';
+                            return '<a href="/evento/altera/' + full.id + '">' + data + '</a>';
                         }
                     },
                     { 
                         title: "Início",
                         data: 'inicio',
                         render: function(data, type, full, meta) {
-                            return '<a href="/calendario/evento/altera/' + full.id + '">' + data + '</a>';
+                            return '<a href="/evento/altera/' + full.id + '">' + data + '</a>';
                         }
                     },
                     { 
                         title: "Fim",
                         data: 'fim',
                         render: function(data, type, full, meta) {
-                            return '<a href="/calendario/evento/altera/' + full.id + '">' + data + '</a>';
+                            return '<a href="/evento/altera/' + full.id + '">' + data + '</a>';
                         }
                     },
                     { 
                         title: "Status",
                         data: 'status',
                         render: function(data, type, full, meta) {
-                            return '<a href="/calendario/evento/altera/' + full.id + '">' + data + '</a>';
+                            return '<a href="/evento/altera/' + full.id + '">' + data + '</a>';
                         }
                     },
                     { 
@@ -314,7 +314,7 @@
         });
 
         function criaEvento() {
-            location.href = '/calendario/evento/novo/';
+            location.href = '/evento/novo/';
         }
 
         function exclui() {
