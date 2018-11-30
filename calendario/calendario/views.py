@@ -48,7 +48,7 @@ class EventoIndex(CMCLoginRequired, SuccessMessageMixin, TemplateView):
 class LocalCreate(CMCAdminLoginRequired, SuccessMessageMixin, CreateView):
     model = Local
     form_class = LocalForm
-    success_url = '/calendario/local/'
+    success_url = '/local/'
     success_message = "Local criado com sucesso"
     template_name = 'calendario/local/create.html'   
 
@@ -58,7 +58,7 @@ class LocalCreate(CMCAdminLoginRequired, SuccessMessageMixin, CreateView):
 class LocalUpdate(CMCAdminLoginRequired, SuccessMessageMixin, UpdateView):
     model = Local
     form_class = LocalForm
-    success_url = '/calendario/local/'
+    success_url = '/local/'
     success_message = "Local alterado com sucesso"
     template_name = 'calendario/local/update.html'       
 
@@ -68,7 +68,7 @@ class LocalUpdate(CMCAdminLoginRequired, SuccessMessageMixin, UpdateView):
 class EventoCreate(CMCAdminLoginRequired, SuccessMessageMixin, CreateView):
     model = Evento
     form_class = EventoForm
-    success_url = '/calendario/evento/'
+    success_url = '/evento/'
     success_message = "Evento criado com sucesso"
     template_name = 'calendario/evento/create.html'
 
@@ -85,7 +85,7 @@ class EventoCreate(CMCAdminLoginRequired, SuccessMessageMixin, CreateView):
 class EventoUpdate(CMCAdminLoginRequired, SuccessMessageMixin, UpdateView):
     model = Evento
     form_class = EventoForm
-    success_url = '/calendario/evento/'
+    success_url = '/evento/'
     success_message = "Evento alterado com sucesso"
     template_name = 'calendario/evento/update.html'           
 
@@ -114,7 +114,7 @@ class ComunicadoIndex(CMCLoginRequired, SuccessMessageMixin, TemplateView):
 class ComunicadoCreate(CMCAdminLoginRequired, SuccessMessageMixin, CreateView):
     model = Comunicado
     form_class = ComunicadoForm
-    success_url = '/calendario/comunicado/'
+    success_url = '/comunicado/'
     success_message = "Comunicado criado com sucesso"
     template_name = 'calendario/comunicado/create.html'       
 
@@ -124,7 +124,7 @@ class ComunicadoCreate(CMCAdminLoginRequired, SuccessMessageMixin, CreateView):
 class ComunicadoUpdate(CMCAdminLoginRequired, SuccessMessageMixin, UpdateView):
     model = Comunicado
     form_class = ComunicadoForm
-    success_url = '/calendario/comunicado/'
+    success_url = '/comunicado/'
     success_message = "Comunicado alterado com sucesso"
     template_name = 'calendario/comunicado/update.html'           
 
