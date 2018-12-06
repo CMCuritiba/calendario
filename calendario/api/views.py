@@ -214,7 +214,7 @@ def get_calendario_full(request):
 # -----------------------------------------------------------------------------------
 def get_comunicados(request):
 	comunicados = Comunicado.objects.filter(fim__gte=datetime.today())
-	comunicados = comunicados.filter(inicio__lte=datetime.today())
+	#comunicados = comunicados.filter(inicio__gte=datetime.today())
 	comunicados = comunicados.order_by("inicio")
 
 	entradas_json = []
