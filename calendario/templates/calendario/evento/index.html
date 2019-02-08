@@ -17,7 +17,7 @@
                 </div>
                 <div class="col-sm-6">
                     <input type="checkbox" id="id_filtro_ativo" name="id_filtro_ativo" data-live-search="true" data-width="50%">
-                    <label for "id_filtro_ativo">Mostrar eventos inativos ?</label>
+                    <label for "id_filtro_ativo">Mostrar eventos inativos e cancelados ?</label>
                 </div>
                 <div class="col-sm-6">
                     <div class="form-group">
@@ -350,7 +350,7 @@
 
         $('#id_filtro_ativo').click(function() {
             if (this.checked) {
-                tableEventos.columns(4).search('ATIVO',true, false).draw();  
+                tableEventos.columns(4).search('ATIVO|CANCELADO',true, false).draw();  
             }
             else {
                 tableEventos.columns(4).search('^ATIVO', true, false).draw();        
